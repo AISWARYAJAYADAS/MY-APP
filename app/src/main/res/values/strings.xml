@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="common_network_error">エラーが発生しました。</string>
+    <string name="no_network_connection">インターネット接続がありません。</string>
+
+
+    <!--Login-->
+    <string name="login_or_register">ログイン/新規登録</string>
+    <string name="mail_id">会員ID</string>
+    <string name="password">パスワード</string>
+    <string name="enter_mail_id">会員IDを入力してください</string>
+    <string name="enter_password">パスワードを入力してください</string>
+    <string name="mandatory_symbol">*</string>
+    <string name="help">ヘルプ</string>
+    <string name="login">ログイン</string>
+    <string name="mandatory_field">必須項目です。</string>
+    <string name="incorrect_id_pwd">会員IDとパスワードが一致しません。</string>
+    <string name="inactive_user">エラーが発生しました。\n管理者に連絡してください。</string>
+
+
+    <string name="forgot_password">パスワードを忘れた場合</string>
+
+    <!--Bottom Navigation-->
+    <string name="home">ホーム</string>
+    <string name="profile">プロフィール</string>
+
+    <!--Profile-->
+    <string name="edit_profile_details">プロフィール編集</string>
+
+    <string name="tab_heading_first">出品中</string>
+    <string name="tab_heading_second">取引中</string>
+    <string name="tab_heading_third">取引完了</string>
+
+    <!--App Bar-->
+    <string name="back">戻る</string>
+
+
+    <!--Settings -->
+    <string name="notification_settings">通知設定</string>
+    <string name="privacy_policy_settings">プライバシーポリシー</string>
+    <string name="logout_settings">ログアウト</string>
+    <string name="def_settings">設定</string>
+
+    <!--Alert Dialog -->
+    <string name="logout">ログアウト</string>
+    <string name="logout_confirmation">ログアウトしますか？</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+
+
+
+
+
+
+
+
+
+</resources>
