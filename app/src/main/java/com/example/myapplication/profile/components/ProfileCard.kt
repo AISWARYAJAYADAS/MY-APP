@@ -161,46 +161,15 @@ fun ProfileImage(profileImageUrl: String?, onUpdateProfileImageClick: () -> Unit
         IconButton(
             onClick = onUpdateProfileImageClick,
             modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.BottomEnd) // Align to bottom-end of Box
-                .offset(x = (5).dp, y = (-5).dp)
-                .padding(bottom = 4.dp, end = 4.dp)
-
-//            modifier = Modifier
-//                .size(20.dp)
-//                .align(Alignment.BottomEnd) // Align to bottom-end of Box
-//                //  .offset(x = (5).dp, y = (-5).dp)
-//                .padding(bottom = 4.dp, end = 4.dp) // Padding for icon content
+                .size(32.dp)
+                .align(Alignment.BottomEnd)
+                .offset(x = 12.dp, y = 1.dp) // Adjust the offset as needed
         ) {
-            Image(painter = painterResource(id = R.drawable.ic_add_profile_image), contentDescription = null)
+            Image(
+                painter = painterResource(id = R.drawable.ic_add_profile_image),
+                contentDescription = null
+            )
         }
-
-
-//        IconButton(
-//            onClick = onUpdateProfileImageClick,
-//            modifier = Modifier
-//                .align(Alignment.BottomEnd)
-//                .size(20.dp)
-//                .padding(bottom = 4.dp, end = 4.dp)
-//
-////            modifier = Modifier
-////                .size(20.dp)
-////                .align(Alignment.BottomEnd) // Align to bottom-end of Box
-////                //  .offset(x = (5).dp, y = (-5).dp)
-////                .padding(bottom = 4.dp, end = 4.dp) // Padding for icon content
-//        ) {
-//            Icon(
-//                painter = painterResource(R.drawable.ic_edit_profile_info_white),
-//                contentDescription = "Edit Profile",
-//                tint = Color.White,
-//                modifier = Modifier
-//                    .clip(CircleShape)// Optional: Remove default button background
-//                    .background(Color(0xFF2BB0E8))
-//                    .border(border = BorderStroke(color = Color.White, width = 1.5.dp))
-//                    .clip(CircleShape)// Optional: Remove default button background
-//
-//            )
-//        }
 
     }
 }
