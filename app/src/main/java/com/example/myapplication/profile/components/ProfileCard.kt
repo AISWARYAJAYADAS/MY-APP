@@ -1,7 +1,9 @@
 package com.example.myapplication.profile.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -59,7 +62,8 @@ fun ProfileCard(
 
     ElevatedCard(
         modifier = Modifier
-            .fillMaxWidth().padding(top = 24.dp)
+            .fillMaxWidth()
+            .padding(top = 24.dp)
             .wrapContentHeight(),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(
@@ -97,12 +101,12 @@ fun ProfileCard(
         }
 
 
-      //  Spacer(modifier = Modifier.height(24.dp))
+        //  Spacer(modifier = Modifier.height(24.dp))
 
         ProfileAchievementGrid(achievements = achievements)
         Spacer(modifier = Modifier.height(24.dp))
 
-         ProfileSnsIconsGrid(snsIcons = snsIcons)
+        ProfileSnsIconsGrid(snsIcons = snsIcons)
         Spacer(modifier = Modifier.height(24.dp))
 
     }
@@ -110,7 +114,7 @@ fun ProfileCard(
 }
 
 @Composable
-fun ProfileSnsIconsGrid(snsIcons:List<ProfileSnsDetails>) {
+fun ProfileSnsIconsGrid(snsIcons: List<ProfileSnsDetails>) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(6), // Adjust columns as needed
         modifier = Modifier.fillMaxWidth()
@@ -129,7 +133,8 @@ fun ProfileSnsIcon(item: ProfileSnsDetails) {
             painter = painterResource(item.icon),
             contentDescription = null,
             modifier = Modifier
-                .size(32.dp))
+                .size(32.dp)
+        )
     }
 
 }
@@ -151,11 +156,14 @@ fun ProfileImage(profileImageUrl: String?, onUpdateProfileImageClick: () -> Unit
                 .clip(CircleShape)
                 .align(Alignment.Center)
         )
+
+
         IconButton(
             onClick = onUpdateProfileImageClick,
             modifier = Modifier
                 .size(20.dp)
-                .align(Alignment.BottomEnd)
+                .align(Alignment.BottomEnd) // Align to bottom-end of Box
+                .offset(x = (5).dp, y = (-5).dp)
                 .padding(bottom = 4.dp, end = 4.dp)
 
 //            modifier = Modifier
@@ -164,16 +172,35 @@ fun ProfileImage(profileImageUrl: String?, onUpdateProfileImageClick: () -> Unit
 //                //  .offset(x = (5).dp, y = (-5).dp)
 //                .padding(bottom = 4.dp, end = 4.dp) // Padding for icon content
         ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_edit_profile_info_white),
-                contentDescription = "Edit Profile",
-                tint = Color.White,
-                modifier = Modifier
-                    .clip(CircleShape)// Optional: Remove default button background
-                    .background(Color(0xFF2BB0E8))
-
-            )
+            Image(painter = painterResource(id = R.drawable.ic_add_profile_image), contentDescription = null)
         }
+
+
+//        IconButton(
+//            onClick = onUpdateProfileImageClick,
+//            modifier = Modifier
+//                .align(Alignment.BottomEnd)
+//                .size(20.dp)
+//                .padding(bottom = 4.dp, end = 4.dp)
+//
+////            modifier = Modifier
+////                .size(20.dp)
+////                .align(Alignment.BottomEnd) // Align to bottom-end of Box
+////                //  .offset(x = (5).dp, y = (-5).dp)
+////                .padding(bottom = 4.dp, end = 4.dp) // Padding for icon content
+//        ) {
+//            Icon(
+//                painter = painterResource(R.drawable.ic_edit_profile_info_white),
+//                contentDescription = "Edit Profile",
+//                tint = Color.White,
+//                modifier = Modifier
+//                    .clip(CircleShape)// Optional: Remove default button background
+//                    .background(Color(0xFF2BB0E8))
+//                    .border(border = BorderStroke(color = Color.White, width = 1.5.dp))
+//                    .clip(CircleShape)// Optional: Remove default button background
+//
+//            )
+//        }
 
     }
 }
@@ -298,7 +325,7 @@ private fun PreviewProfileCard() {
         achievements = listOf(
             ProfileAchievements("出品数", 345),
             ProfileAchievements("フォロワー", 22345),
-            ),
+        ),
         snsIcons = listOf(
             ProfileSnsDetails(
                 id = 1,
