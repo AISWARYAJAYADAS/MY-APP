@@ -1,5 +1,6 @@
 package com.example.myapplication.post_listing
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.api.model.Output
@@ -35,32 +36,34 @@ class PostListingViewModel @Inject constructor(
     private val _dislikeCount = MutableStateFlow("")
     val dislikeCount: StateFlow<String> = _dislikeCount.asStateFlow()
 
-    init {
-        getUserDetails()
-    }
+//    init {
+//        getUserDetails()
+//    }
 
     fun getUserDetails(forceUpdate: Boolean = false) = viewModelScope.launch {
-        _profileDetails.value =profileManager.currentUserProfile.value
-        if (profileManager.currentUserProfile.value == null) {
+        Log.d("PostListingViewModel", "Fetching user details...")
+        _profileDetails.value = profileManager.currentUserProfile.value
+        if (profileManager.currentUserProfile.value == null || forceUpdate) {
             repository.getUserDetails().collect { response ->
                 when (response) {
                     is Output.Success -> {
-                        val profile = response.value?.profile
+                        val profile = response.value?.data
+                        Log.d("PostListingViewModel", "Profile data fetched: $profile")
                         profileManager.setUserProfile(profile)
                         profile?.let {
                             _name.value = it.nickname
                             _profileImageUrl.value = it.image.smallUrl
                             _likeCount.value = it.goodReviewCount.toString()
                             _dislikeCount.value = it.badReviewCount.toString()
+                            Log.d("PostListingViewModel", "Name: ${it.nickname}, ImageUrl: ${it.image.smallUrl}")
                         }
                     }
-
                     is Output.Error -> {
                         // Handle error
+                        Log.e("PostListingViewModel", "Error: ${response.apiError}")
                     }
                 }
             }
-
         } else {
             profileManager.currentUserProfile.value?.let { profile ->
                 _name.value = profile.nickname
@@ -70,4 +73,7 @@ class PostListingViewModel @Inject constructor(
             }
         }
     }
+
+
+
 }

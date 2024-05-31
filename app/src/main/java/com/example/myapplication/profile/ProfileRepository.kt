@@ -1,5 +1,6 @@
 package com.example.myapplication.profile
 
+import android.util.Log
 import com.example.myapplication.api.CommonApiSuccessResponse
 import com.example.myapplication.api.datasource.RemoteDataSource
 import com.example.myapplication.api.model.Output
@@ -48,6 +49,7 @@ class ProfileRepository @Inject constructor(
     fun getUserDetails():Flow<Output<ProfileApiResponse>>{
         return flow {
             val result = remoteDataSource.getUserDetails()
+            Log.d("Profile Repository", "getUserDetails: $result")
             emit(result)
         }.flowOn(Dispatchers.IO)
     }

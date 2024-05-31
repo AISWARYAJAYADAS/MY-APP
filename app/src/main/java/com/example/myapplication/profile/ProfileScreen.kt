@@ -1,5 +1,6 @@
 package com.example.myapplication.profile
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -40,12 +41,18 @@ fun ProfileScreen(
     LaunchedEffect(key1 = Unit) {
         viewModel.getUserDetails(forceUpdate = true)
 
+
     }
 
     val profileImageUrl by viewModel.profileImageUrl.collectAsState()
     val name by viewModel.name.collectAsState()
     val likeCount by viewModel.likeCount.collectAsState()
     val dislikeCount by viewModel.dislikeCount.collectAsState()
+
+
+    // Log collected state values
+    Log.d("ProfileScreen", "ProfileImageUrl: $profileImageUrl, Name: $name, LikeCount: $likeCount, DislikeCount: $dislikeCount")
+
 
     Column(
         modifier = Modifier
@@ -157,17 +164,15 @@ fun ProfileScreen(
                 }
 
 
-
-
             2 ->
 
                 LazyColumn {
                     items(5) { index ->
                         Text(
-                        text = "Third tab data $index",
-                        color = Color.Black,
-                        modifier = Modifier.padding(16.dp)
-                    )
+                            text = "Third tab data $index",
+                            color = Color.Black,
+                            modifier = Modifier.padding(16.dp)
+                        )
                     }
                 }
 

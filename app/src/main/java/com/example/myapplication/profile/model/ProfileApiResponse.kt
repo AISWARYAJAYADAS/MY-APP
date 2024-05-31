@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 
 @Keep
 data class ProfileApiResponse(
-    val profile: Profile,
+    val data: Profile,
     val message: String,
     val statusCode: Int,
     val success: Boolean
