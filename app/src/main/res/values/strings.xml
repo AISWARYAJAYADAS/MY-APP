@@ -48,6 +48,10 @@
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
 
+    <!--Profile Card -->
+    <string name="entries">出品数</string>
+    <string name="followers">フォロワー</string>
+
 
 
 

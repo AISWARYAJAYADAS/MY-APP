@@ -50,6 +50,7 @@ fun ProfileScreen(
     val dislikeCount by viewModel.dislikeCount.collectAsState()
 
 
+
     // Log collected state values
     Log.d("ProfileScreen", "ProfileImageUrl: $profileImageUrl, Name: $name, LikeCount: $likeCount, DislikeCount: $dislikeCount")
 
@@ -71,50 +72,8 @@ fun ProfileScreen(
             dislikeCount = dislikeCount,
             onEditProfileClick = {},
             onUpdateProfileImageClick = {},
-            achievements = listOf(
-                ProfileAchievements("出品数", "345"),
-                ProfileAchievements("フォロワー", "22345"),
-            ),
-            snsIcons = listOf(
-                ProfileSnsDetails(
-                    id = 1,
-                    icon = R.drawable.ic_profile_sns_sb,
-                    title = "SBProfile",
-                    url = ""
-                ),
-                ProfileSnsDetails(
-                    id = 2,
-                    icon = R.drawable.ic_profile_sns_insta,
-                    title = "Instagram",
-                    url = ""
-                ),
-                ProfileSnsDetails(
-                    id = 3,
-                    icon = R.drawable.ic_profile_sns_wear,
-                    title = "Wear",
-                    url = ""
-                ),
-                ProfileSnsDetails(
-                    id = 4,
-                    icon = R.drawable.ic_profile_sns_youtube,
-                    title = "Youtube",
-                    url = ""
-                ),
-                ProfileSnsDetails(
-                    id = 5,
-                    icon = R.drawable.ic_profile_sns_twitter,
-                    title = "Twitter",
-                    url = ""
-                ),
-                ProfileSnsDetails(
-                    id = 6,
-                    icon = R.drawable.ic_profile_sns_tiktok,
-                    title = "Tiktok",
-                    url = ""
-                )
-
-
-            )
+            achievements = viewModel.getProfileAchievements(),
+            snsIcons = viewModel.getSnsDetails()
         )
 
         Spacer(modifier = Modifier.height(24.dp))

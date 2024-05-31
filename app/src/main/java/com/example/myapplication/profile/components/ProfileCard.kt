@@ -157,6 +157,7 @@ fun ProfileImage(profileImageUrl: String?, onUpdateProfileImageClick: () -> Unit
                 .size(20.dp)
                 .align(Alignment.BottomEnd)
                 .padding(bottom = 4.dp, end = 4.dp)
+
 //            modifier = Modifier
 //                .size(20.dp)
 //                .align(Alignment.BottomEnd) // Align to bottom-end of Box
@@ -170,6 +171,7 @@ fun ProfileImage(profileImageUrl: String?, onUpdateProfileImageClick: () -> Unit
                 modifier = Modifier
                     .clip(CircleShape)// Optional: Remove default button background
                     .background(Color(0xFF2BB0E8))
+
             )
         }
 
@@ -228,7 +230,7 @@ fun EditProfileButton(onEditProfileClick: () -> Unit) {
         Icon(
             painter = painterResource(R.drawable.ic_edit_profile_info_white),
             tint = Color.White,
-            contentDescription = ""
+            contentDescription = "",
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
@@ -264,7 +266,7 @@ fun ProfileAchievementItem(achievement: ProfileAchievements) {
         Text(text = achievement.label, fontSize = 14.sp, color = Color(0xFF949494))
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = achievement.value,
+            text = achievement.value.toString(),
             fontSize = 20.sp,
             color = Color(0xFF212121),
             fontWeight = FontWeight.Bold
@@ -294,8 +296,8 @@ private fun PreviewProfileCard() {
         onEditProfileClick = {},
         onUpdateProfileImageClick = {},
         achievements = listOf(
-            ProfileAchievements("出品数", "345"),
-            ProfileAchievements("フォロワー", "22345"),
+            ProfileAchievements("出品数", 345),
+            ProfileAchievements("フォロワー", 22345),
             ),
         snsIcons = listOf(
             ProfileSnsDetails(

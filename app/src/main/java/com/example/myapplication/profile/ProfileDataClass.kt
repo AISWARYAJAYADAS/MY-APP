@@ -12,7 +12,7 @@ import androidx.annotation.Keep
 @Keep
 data class ProfileAchievements(
     val label: String,
-    val value: String,
+    val value: Int,
 )
 
 /**
