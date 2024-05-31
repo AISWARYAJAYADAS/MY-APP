@@ -9,6 +9,7 @@ import com.example.myapplication.login.LoginApiResponse
 import com.example.myapplication.login.LoginRequest
 import com.example.myapplication.login.LogoutRequest
 import com.example.myapplication.pref.SharedPref
+import com.example.myapplication.profile.model.ProfileApiResponse
 import com.example.myapplication.utils.NetworkConstants
 import retrofit2.HttpException
 import retrofit2.Retrofit
@@ -63,6 +64,15 @@ class RemoteDataSource @Inject constructor(
             apiService.deleteDevice(
                 headers = sharedPrefs.headers,
                 deviceId = deviceId
+            )
+        })
+    }
+
+    //Fetches the user's profile details.
+    suspend fun getUserDetails():Output<ProfileApiResponse>{
+        return getResponse (request = {
+            apiService.getUserDetails(
+                headers = sharedPrefs.headers
             )
         })
     }

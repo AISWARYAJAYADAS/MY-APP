@@ -12,6 +12,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +24,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.myapplication.R
 import com.example.myapplication.components.CustomTabLayout
 import com.example.myapplication.components.TabData
@@ -30,9 +34,18 @@ import com.example.myapplication.profile.components.ProfileCard
 
 @Composable
 fun ProfileScreen(
-
+    viewModel: PostListingViewModel = hiltViewModel()
 ) {
-    val viewModel = PostListingViewModel()
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getUserDetails(forceUpdate = true)
+
+    }
+
+    val profileImageUrl by viewModel.profileImageUrl.collectAsState()
+    val name by viewModel.name.collectAsState()
+    val likeCount by viewModel.likeCount.collectAsState()
+    val dislikeCount by viewModel.dislikeCount.collectAsState()
 
     Column(
         modifier = Modifier
@@ -45,10 +58,10 @@ fun ProfileScreen(
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         ProfileCard(
-            profileImageUrl = "",
-            name = "真由美 真由美",
-            likeCount = "32",
-            dislikeCount = "32",
+            profileImageUrl = profileImageUrl,
+            name = name,
+            likeCount = likeCount,
+            dislikeCount = dislikeCount,
             onEditProfileClick = {},
             onUpdateProfileImageClick = {},
             achievements = listOf(

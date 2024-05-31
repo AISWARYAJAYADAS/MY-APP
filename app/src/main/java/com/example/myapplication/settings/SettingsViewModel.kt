@@ -38,9 +38,6 @@ class SettingsViewModel @Inject constructor(
         LOGOUT
     }
 
-    fun clearSharedPreferences() {
-        sharedPreferences.edit().clear().apply()
-    }
 
 
 }

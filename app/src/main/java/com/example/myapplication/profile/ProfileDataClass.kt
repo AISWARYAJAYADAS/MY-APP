@@ -31,3 +31,4 @@ data class ProfileSnsDetails(
     val icon: Int,
     val url: String,
 )
+

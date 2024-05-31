@@ -20,6 +20,9 @@ import javax.inject.Singleton
 @Singleton
 class SharedPref @Inject constructor(private val sharedPref: SharedPreferences) {
 
+    fun clearTokens() {
+        sharedPref.edit().remove(ACCESS_TOKEN).remove(REFRESH_TOKEN).apply()
+    }
 
     /**
      * Remove all user specific data in Shared preference.

@@ -36,9 +36,6 @@ fun MainNavGraph(navController: NavHostController) {
         detailsNavGraph(navController = navController)
 
 
-
-
-
     }
 
 }

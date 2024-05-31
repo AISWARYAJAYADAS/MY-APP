@@ -6,11 +6,13 @@ import com.example.myapplication.home.AddDeviceResponse
 import com.example.myapplication.login.LoginApiResponse
 import com.example.myapplication.login.LoginRequest
 import com.example.myapplication.login.LogoutRequest
+import com.example.myapplication.profile.model.ProfileApiResponse
 import com.example.myapplication.utils.ApiEndPoint
 import com.example.myapplication.utils.NetworkConstants
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -39,6 +41,11 @@ interface ApiService {
         @HeaderMap headers: Map<String, String>,
         @Path(NetworkConstants.DEVICE_ID) deviceId: String?,
     ): Response<CommonApiSuccessResponse>
+
+    @GET(ApiEndPoint.GET_USER_DETAILS)
+    suspend fun getUserDetails(
+        @HeaderMap headers: Map<String, String>
+    ): Response<ProfileApiResponse>
 }
 
 
