@@ -38,6 +38,7 @@ fun CustomAlertDialog(
 
     if (showDialog) {
         AlertDialog(
+            containerColor = Color.White,
             onDismissRequest = { showDialog = false },
             confirmButton = {
                 Row(
