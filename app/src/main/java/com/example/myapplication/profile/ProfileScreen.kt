@@ -50,21 +50,23 @@ fun ProfileScreen(
     val dislikeCount by viewModel.dislikeCount.collectAsState()
 
 
-
     // Log collected state values
-    Log.d("ProfileScreen", "ProfileImageUrl: $profileImageUrl, Name: $name, LikeCount: $likeCount, DislikeCount: $dislikeCount")
+    Log.d(
+        "ProfileScreen",
+        "ProfileImageUrl: $profileImageUrl, Name: $name, LikeCount: $likeCount, DislikeCount: $dislikeCount"
+    )
 
 
     Column(
         modifier = Modifier
-            .padding(top = 85.dp, start = 8.dp, end = 8.dp, bottom = 8.dp)
+            .padding(top = 85.dp, start = 8.dp, end = 8.dp)
             .background(
                 color = colorResource(id = R.color.app_background)
             ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(8.dp))
+        //  Spacer(modifier = Modifier.height(8.dp))
         ProfileCard(
             profileImageUrl = profileImageUrl,
             name = name,

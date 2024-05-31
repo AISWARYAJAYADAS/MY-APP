@@ -117,7 +117,7 @@ fun ProfileCard(
 fun ProfileSnsIconsGrid(snsIcons: List<ProfileSnsDetails>) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(6), // Adjust columns as needed
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().padding(start = 12.dp, end = 12.dp),
     ) {
         items(snsIcons) { item ->
             ProfileSnsIcon(item)
@@ -181,7 +181,8 @@ fun ProfileInfo(name: String, likeCount: String?, dislikeCount: String?) {
     Column {
         Text(
             text = name,
-            fontSize = 17.sp
+            fontSize = 17.sp,
+            fontWeight = FontWeight.Bold,
         )
         Spacer(modifier = Modifier.size(10.dp))
 
@@ -258,7 +259,10 @@ fun ProfileAchievementGrid(achievements: List<ProfileAchievements>) {
 
 @Composable
 fun ProfileAchievementItem(achievement: ProfileAchievements) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(text = achievement.label, fontSize = 14.sp, color = Color(0xFF949494))
         Spacer(modifier = Modifier.height(8.dp))
         Text(
