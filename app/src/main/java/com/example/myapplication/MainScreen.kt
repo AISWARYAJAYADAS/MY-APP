@@ -1,24 +1,17 @@
 package com.example.myapplication
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -31,11 +24,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -50,9 +42,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.components.CustomAppBar
+import com.example.myapplication.create_listing.CreateListingBottomSheetContent
 import com.example.myapplication.graphs.Graph
 import com.example.myapplication.graphs.MainNavGraph
-import com.example.myapplication.profile.LogoutViewModel
+
 
 @Composable
 fun MainScreen(navController: NavHostController = rememberNavController()) {
@@ -95,7 +88,6 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
 }
 
 
-
 @Composable
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
@@ -123,15 +115,13 @@ fun BottomBar(navController: NavHostController) {
                         navController = navController
                     )
                     if (index < screens.lastIndex) {
-                        AddFab() // Add FAB between items except the last one
+                        AddFab(navController = navController) // Add FAB between items except the last one
                     }
                 }
             }
         }
     }
 }
-
-
 
 
 @Composable
@@ -147,7 +137,7 @@ fun RowScope.AddItem(
 
         label = {
             Text(text = screen.title)
-                },
+        },
         icon = {
             Icon(
                 painter = painterResource(id = if (selected) screen.activeIcon else screen.inactiveIcon),
@@ -174,26 +164,16 @@ fun RowScope.AddItem(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddFab() {
-    var isSheetOpen by rememberSaveable { mutableStateOf(false) }
-    val sheetState = rememberModalBottomSheetState()
+fun AddFab(navController: NavHostController) {
+    val sheetState = rememberModalBottomSheetState() // sheet state - open or closed
+    var showBottomSheet by remember { mutableStateOf(false) }
 
     // Add your FAB implementation here
     FloatingActionButton(
         shape = CircleShape,
         containerColor = colorResource(id = R.color.bottom_nav_fab_icon),
         onClick = {
-            // Handle FAB click action
-                  if (isSheetOpen){
-
-//                      ModalBottomSheet(
-//                          onDismissRequest = { isSheetOpen = false },
-//                          sheetState = sheetState,
-//                      ) {
-//                          SampleList()
-//                      }
-
-                  }
+            showBottomSheet = true
         },
         modifier = Modifier.size(50.dp)
         //.padding(start = 16.dp, end = 16.dp)
@@ -201,12 +181,26 @@ fun AddFab() {
         // Add FAB icon or content here
         Icon(imageVector = Icons.Default.Add, contentDescription = null, tint = Color.White)
     }
+
+    if (showBottomSheet) {
+        ModalBottomSheet(
+            scrimColor = Color.Transparent,
+            containerColor = Color.White,
+            shape = RoundedCornerShape(
+                topStart = 12.dp,
+                topEnd = 12.dp,
+                bottomStart = 0.dp,
+                bottomEnd = 0.dp
+            ),
+            onDismissRequest = { showBottomSheet = false },
+            sheetState = sheetState
+        ) {
+
+            CreateListingBottomSheetContent()
+
+        }
+    }
 }
-
-
-
-
-
 
 
 @Preview

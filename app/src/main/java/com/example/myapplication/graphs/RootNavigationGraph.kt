@@ -22,6 +22,7 @@ fun RootNavigationGraph(navController: NavHostController) {
         composable(route = Graph.MAIN_SCREEN_PAGE) {
             MainScreen()
         }
+        createListingNavGraph(navController)
 
         
     }

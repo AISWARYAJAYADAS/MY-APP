@@ -52,6 +52,11 @@
     <string name="entries">出品数</string>
     <string name="followers">フォロワー</string>
 
+    <!--Create Listing Bottom Sheet -->
+    <string name="create_listing_bottom_sheet_title">出品する</string>
+    <string name="create_listing_from_pdt">新しく出品する</string>
+    <string name="create_listing_from_draft">下書きから出品する</string>
+
 
 
 
