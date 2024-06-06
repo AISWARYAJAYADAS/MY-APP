@@ -10,16 +10,25 @@ import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -34,6 +43,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.myapplication.R
 import com.example.myapplication.components.CustomAppBar
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,13 +85,19 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
             CustomAppBar(
                 title = R.string.create_listing_title_gallery,
                 navigationIcon = {
-                    Icon(painter = painterResource(id = R.drawable.ic_close), contentDescription = null)
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_close),
+                        contentDescription = null
+                    )
                 },
                 actions = {
                     Row {
                         Text(text = stringResource(id = R.string.next), fontSize = 14.sp)
                         Spacer(modifier = Modifier.width(4.dp))
-                        Icon(painter = painterResource(id = R.drawable.ic_next), contentDescription = null)
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_next),
+                            contentDescription = null
+                        )
                     }
                 }
             )
@@ -107,7 +123,27 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
             )
 
             if (hasPermissions) {
-                GalleryFolderList(galleryFolders = galleryPickerViewModel.galleryFolders.value)
+                //  GalleryFolderList(galleryFolders = galleryPickerViewModel.galleryFolders.value)
+                //GalleryFolderDropdown(galleryFolders = galleryPickerViewModel.galleryFolders.value)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth().padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    GalleryFolderDropdown(
+                        galleryFolders = galleryPickerViewModel.galleryFolders.value,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_camera_gallery),
+                        contentDescription = "Camera",
+                        modifier = Modifier
+                            .size(32.dp)
+                            .clickable { /* Handle camera icon click */ }
+                    )
+                }
             } else {
                 if (showPermissionDeniedMessage) {
                     PermissionDeniedMessage(context)
@@ -118,6 +154,7 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
         }
     }
 }
+
 
 @Composable
 fun PermissionDeniedMessage(context: Context) {
@@ -139,6 +176,7 @@ fun PermissionDeniedMessage(context: Context) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GalleryFolderList(galleryFolders: List<GalleryFolder>) {
     LazyColumn(
@@ -163,3 +201,48 @@ fun GalleryFolderList(galleryFolders: List<GalleryFolder>) {
         }
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GalleryFolderDropdown(galleryFolders: List<GalleryFolder>, modifier: Modifier = Modifier) {
+    var expanded by remember { mutableStateOf(false) }
+    var selectedFolder by remember { mutableStateOf<GalleryFolder?>(null) }
+    val labelText = selectedFolder?.name ?: galleryFolders.firstOrNull()?.name ?: "Select Folder"
+
+    Box(
+        modifier = modifier
+            .clickable { expanded = !expanded }
+            .padding(8.dp) // Padding to make it easier to click
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = labelText)
+            (if (expanded) null else R.drawable.ic_arrow_down)?.let { painterResource(id = it) }?.let {
+                Icon(
+                    painter = it,
+                    contentDescription = null
+                )
+            }
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            galleryFolders.forEach { folder ->
+                DropdownMenuItem(
+                    text = { Text(folder.name) },
+                    onClick = {
+                        selectedFolder = folder
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
+

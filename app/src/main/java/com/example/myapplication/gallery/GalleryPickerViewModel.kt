@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GalleryPickerViewModel @Inject constructor(
-    private val cr: ContentResolver?,
+    private val cr: ContentResolver?
 ) : ViewModel() {
 
     var galleryClickedItem = MutableLiveData<String>()
@@ -34,9 +34,13 @@ class GalleryPickerViewModel @Inject constructor(
 
     fun getGalleryFolders() {
         coroutineScope.launch {
+            Log.d("GalleryPickerViewModel", "Fetching media folders...")
             val mediaFolderList = getMediaFolders()
             galleryFolderList.postValue(mediaFolderList)
             galleryFolders.value = mediaFolderList
+            Log.d("GalleryPickerViewModel", "Media folders fetched: $mediaFolderList")
+            Log.d("GalleryPickerViewModel", "Current Media Folder: ${mediaFolderList[0]}")
+
             if (mediaFolderList.isEmpty()) {
                 currentMediaFolder.postValue("")
             }
@@ -95,6 +99,7 @@ class GalleryPickerViewModel @Inject constructor(
         return mediaFolders
     }
 }
+
 
 
 

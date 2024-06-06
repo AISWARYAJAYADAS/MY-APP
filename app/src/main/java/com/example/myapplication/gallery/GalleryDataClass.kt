@@ -16,7 +16,7 @@ data class Gallery(
  **/
 //data class GalleryFolder(val name: String, val path: String, val imageCount: Int)
 data class GalleryFolder(
-    val name: String,
+    var name: String,
     val folderPath: String,
     var firstPicPath: String,
     var isSelected: Boolean
