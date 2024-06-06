@@ -22,7 +22,7 @@ fun RootNavigationGraph(navController: NavHostController) {
         composable(route = Graph.MAIN_SCREEN_PAGE) {
             MainScreen()
         }
-        createListingNavGraph(navController)
+
 
         
     }
@@ -36,4 +36,5 @@ object Graph {
     const val MAIN_SCREEN_PAGE = "main_screen_graph"
     const val SETTINGS = "settings_graph"
     const val DETAILS = "details_graph"
+    const val CREATE_LISTING = "create_listing_graph"
 }

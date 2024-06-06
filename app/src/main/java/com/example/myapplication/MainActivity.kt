@@ -15,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -45,9 +46,9 @@ class MainActivity : ComponentActivity() {
 
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         enableEdgeToEdge()
 
@@ -65,26 +66,8 @@ class MainActivity : ComponentActivity() {
 
     }
 
-//    private fun observeForceLogout(navController: NavController,onClearSharedPref: () -> Unit) {
-//        MainViewModel.forceLogout.observe(this@MainActivity) { flow ->
-//            when (flow) {
-//                LogoutFlow.REFRESH_TOKEN_EXPIRED -> {
-//                    //no op
-//                }
-//                /*LogoutFlow.INACTIVE_USER -> {
-//                    //no op
-//                }*/
-//            }
-//            forceLogOutUser(navController = navController,onClearSharedPref=onClearSharedPref)
-//        }
-//    }
 
-//    private fun forceLogOutUser(onClearSharedPref: () -> Unit,navController: NavController) {
-//       onClearSharedPref.invoke()
-//        navController.navigate(Graph.AUTHENTICATION) {
-//            popUpTo(Graph.ROOT) { inclusive = true }
-//        }
-//    }
+
 
 }
 

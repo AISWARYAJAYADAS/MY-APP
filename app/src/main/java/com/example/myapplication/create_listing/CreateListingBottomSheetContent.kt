@@ -16,10 +16,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.myapplication.R
+import com.example.myapplication.graphs.CreateListingRoutes
+import com.example.myapplication.graphs.Graph
 
 @Composable
-fun CreateListingBottomSheetContent() {
+fun CreateListingBottomSheetContent(
+    navController: NavHostController
+) {
     Text(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,7 +36,14 @@ fun CreateListingBottomSheetContent() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { }
+            .clickable {
+                navController.navigate(route = Graph.CREATE_LISTING)
+
+
+
+                // navController.navigate(CreateListingRoutes.GalleryPickerScreen.route)
+
+            }
             .padding(
                 start = 28.dp,
                 top = 33.dp,
@@ -52,7 +64,7 @@ fun CreateListingBottomSheetContent() {
         )
     }
 
-    Divider(modifier = Modifier.padding(start = 28.dp, end = 28.dp),color = Color.LightGray)
+    Divider(modifier = Modifier.padding(start = 28.dp, end = 28.dp), color = Color.LightGray)
 
     Row(
         modifier = Modifier
@@ -77,6 +89,6 @@ fun CreateListingBottomSheetContent() {
             fontWeight = FontWeight.Medium
         )
     }
-    Divider(modifier = Modifier.padding(start = 28.dp, end = 28.dp),color = Color.LightGray)
+    Divider(modifier = Modifier.padding(start = 28.dp, end = 28.dp), color = Color.LightGray)
 
 }

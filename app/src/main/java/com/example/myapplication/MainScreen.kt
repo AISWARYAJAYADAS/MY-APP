@@ -196,7 +196,7 @@ fun AddFab(navController: NavHostController) {
             sheetState = sheetState
         ) {
 
-            CreateListingBottomSheetContent()
+            CreateListingBottomSheetContent(navController = navController)
 
         }
     }

@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import com.example.myapplication.BottomBarScreen
 import com.example.myapplication.MainViewModel
 import com.example.myapplication.ScreenContent
+import com.example.myapplication.gallery.GalleryPickerScreen
 import com.example.myapplication.home.HomeScreen
 import com.example.myapplication.profile.ProfileScreen
 import com.example.myapplication.settings.SettingsScreen
@@ -34,6 +35,7 @@ fun MainNavGraph(navController: NavHostController) {
 
         settingsNavGraph(navController = navController)
         detailsNavGraph(navController = navController)
+        createListingNavGraph(navController)
 
 
     }
@@ -74,6 +76,9 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
     }
 }
 
+
+
+
 sealed class SettingsScreen(val route: String) {
     object SETTINGS : SettingsScreen(route = "SETTINGS_PAGE")
 }
@@ -81,4 +86,54 @@ sealed class SettingsScreen(val route: String) {
 sealed class DetailsScreen(val route: String) {
     object BTM_DETAIL_PAGE : DetailsScreen(route = "DETAIL_PAGE_")
     object BTM_SUB_DETAILS_PAGE : DetailsScreen(route = "DETAIL_PAGE_SUB")
+}
+
+
+
+fun NavGraphBuilder.createListingNavGraph(navController: NavHostController) {
+    navigation(
+        route = Graph.CREATE_LISTING,
+        startDestination = CreateListingRoutes.GalleryPickerScreen.route
+    ) {
+
+        composable(route = CreateListingRoutes.GalleryPickerScreen.route) {
+            GalleryPickerScreen(navHostController = navController)
+        }
+
+
+//        composable(route = CreateListingRoutes.ListNewItemScreen.route) {
+//            // ListNewItemScreen(navController = navController)
+//        }
+//        composable(route = CreateListingRoutes.ListFromDraftScreen.route) {
+//            // ListFromDraftScreen(navController = navController)
+//        }
+//
+//        composable(route = CreateListingRoutes.ListingImageFullScreenPreview.route) {
+//            // ListingImageFullScreenPreview(navController = navController)
+//        }
+//        composable(route = CreateListingRoutes.ImageCroppingScreen.route) {
+//            // ImageCroppingScreen(navController = navController)
+//        }
+//        composable(route = CreateListingRoutes.CameraCaptureScreen.route) {
+//            // CameraCaptureScreen(navController = navController)
+//        }
+//        composable(route = CreateListingRoutes.CameraCaptureImagePreview.route) {
+//            // CameraCaptureImagePreview(navController = navController)
+//        }
+//        composable(route = CreateListingRoutes.DraftListingScreen.route) {
+//            // DraftListingScreen(navController = navController)
+//        }
+    }
+}
+
+
+sealed class CreateListingRoutes(val route: String) {
+    object ListNewItemScreen : CreateListingRoutes("LIST_NEW_ITEM")
+    object ListFromDraftScreen : CreateListingRoutes("LIST_FROM_DRAFT")
+    object GalleryPickerScreen : CreateListingRoutes("GALLERY_PICKER")
+    object ListingImageFullScreenPreview : CreateListingRoutes("IMAGE_FULL_SCREEN_PREVIEW")
+    object ImageCroppingScreen : CreateListingRoutes("IMAGE_CROPPING")
+    object CameraCaptureScreen : CreateListingRoutes("CAMERA_CAPTURE")
+    object CameraCaptureImagePreview : CreateListingRoutes("CAMERA_CAPTURE_IMAGE_PREVIEW")
+    object DraftListingScreen : CreateListingRoutes("DRAFT_LISTING")
 }
