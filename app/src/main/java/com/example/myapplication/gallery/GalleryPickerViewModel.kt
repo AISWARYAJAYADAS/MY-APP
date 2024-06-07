@@ -29,8 +29,8 @@ class GalleryPickerViewModel @Inject constructor(
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
 
-    val galleryFolderList = MutableLiveData<ArrayList<GalleryFolder>>()
-    val currentMediaFolder = MutableLiveData<String>()
+    private val galleryFolderList = MutableLiveData<ArrayList<GalleryFolder>>()
+    private val currentMediaFolder = MutableLiveData<String>()
 
     fun getGalleryFolders() {
         coroutineScope.launch {
@@ -47,7 +47,7 @@ class GalleryPickerViewModel @Inject constructor(
         }
     }
 
-    suspend fun getMediaFolders(): ArrayList<GalleryFolder> {
+    private suspend fun getMediaFolders(): ArrayList<GalleryFolder> {
         val mediaFolders: ArrayList<GalleryFolder> = ArrayList()
         withContext(Dispatchers.IO) {
             val picPaths = ArrayList<String>()
