@@ -126,33 +126,11 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
             )
 
             if (hasPermissions) {
-                Column {
-                    GalleryDropdownAndCameraRow(galleryPickerViewModel)
-                    LazyVerticalGrid(
-                        columns = GridCells.Adaptive(minSize = 128.dp),
-                        verticalArrangement = Arrangement.spacedBy(3.dp),
-                        horizontalArrangement = Arrangement.spacedBy(3.dp),
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        items(galleryPickerViewModel.imagesInSelectedFolder.value) { imagePath ->
-                            Surface(
-                                tonalElevation = 3.dp,
-                                modifier = Modifier
-                                    .aspectRatio(1f)
-                                    .clickable {
-                                        galleryPickerViewModel.selectedImagePath.value = imagePath
-                                    }
-                            ) {
-                                AsyncImage(
-                                    model = imagePath,
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                            }
-                        }
-                    }
-                }
+                GalleryContent(galleryPickerViewModel)
+//                Column {
+//                    GalleryDropdownAndCameraRow(galleryPickerViewModel)
+//                    ImageGrid(galleryPickerViewModel)
+//                }
 
 
             } else {
@@ -161,6 +139,49 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
                 } else {
                     Text(text = "Requesting permissions...")
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun GalleryContent(viewModel: GalleryPickerViewModel) {
+    LaunchedEffect(viewModel.galleryFolders.value) {
+        val folders = viewModel.galleryFolders.value
+        if (folders.isNotEmpty() && viewModel.selectedFolder.value == null) {
+            viewModel.selectFolder(folders.first())
+        }
+    }
+
+    Column {
+        GalleryDropdownAndCameraRow(viewModel)
+        ImageGrid(viewModel)
+    }
+}
+
+@Composable
+private fun ImageGrid(galleryPickerViewModel: GalleryPickerViewModel) {
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 128.dp),
+        verticalArrangement = Arrangement.spacedBy(3.dp),
+        horizontalArrangement = Arrangement.spacedBy(3.dp),
+        modifier = Modifier.padding(16.dp)
+    ) {
+        items(galleryPickerViewModel.imagesInSelectedFolder.value) { imagePath ->
+            Surface(
+                tonalElevation = 3.dp,
+                modifier = Modifier
+                    .aspectRatio(1f)
+                    .clickable {
+                        galleryPickerViewModel.selectedImagePath.value = imagePath
+                    }
+            ) {
+                AsyncImage(
+                    model = imagePath,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
     }
