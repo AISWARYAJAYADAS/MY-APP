@@ -126,10 +126,10 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
             )
 
             if (hasPermissions) {
-                //  GalleryFolderList(galleryFolders = galleryPickerViewModel.galleryFolders.value)
-                //GalleryFolderDropdown(galleryFolders = galleryPickerViewModel.galleryFolders.value)
                 Column {
                     GalleryDropdownAndCameraRow(galleryPickerViewModel)
+                    Log.d("Gallery  Current Media Folder", "Media Folder: ${galleryPickerViewModel.currentMediaFolder}")
+                    Text(text = "Media Folder: ${galleryPickerViewModel.currentMediaFolder.value}")
                     LazyVerticalGrid(
                         columns = GridCells.Adaptive(minSize = 128.dp),
                         verticalArrangement = Arrangement.spacedBy(3.dp),
@@ -172,6 +172,11 @@ private fun GalleryDropdownAndCameraRow(galleryPickerViewModel: GalleryPickerVie
     ) {
         GalleryFolderDropdown(
             galleryFolders = galleryPickerViewModel.galleryFolders.value,
+            selectedFolder = galleryPickerViewModel.currentMediaFolder.value, // Pass the selected folder
+            onFolderSelected = { folder ->
+                // Update the selected folder in the ViewModel
+                galleryPickerViewModel.currentMediaFolder.value = folder
+            },
             modifier = Modifier.weight(1f)
         )
         Spacer(modifier = Modifier.width(4.dp))
@@ -206,36 +211,16 @@ fun PermissionDeniedMessage(context: Context) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun GalleryFolderList(galleryFolders: List<GalleryFolder>) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        items(galleryFolders) { galleryFolder ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(color = Color.LightGray)
-            ) {
-                Text(
-                    text = galleryFolder.name,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .padding(16.dp)
-                )
-            }
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GalleryFolderDropdown(galleryFolders: List<GalleryFolder>, modifier: Modifier = Modifier) {
+fun GalleryFolderDropdown(
+    galleryFolders: List<GalleryFolder>,
+    selectedFolder: GalleryFolder?, // Selected folder
+    onFolderSelected: (GalleryFolder) -> Unit, // Callback when a folder is selected
+    modifier: Modifier = Modifier
+) {
     var isExpended by remember { mutableStateOf(false) }
-    var selectedFolder by remember { mutableStateOf<GalleryFolder?>(null) }
     val selectedText = selectedFolder?.name ?: galleryFolders.firstOrNull()?.name ?: "Select Folder"
 
     ExposedDropdownMenuBox(
@@ -246,7 +231,7 @@ fun GalleryFolderDropdown(galleryFolders: List<GalleryFolder>, modifier: Modifie
         GalleryFolderDropdownTextField(
             text = selectedText,
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpended) },
-            modifier = Modifier
+            modifier = modifier
                 .defaultMinSize(130.dp)
                 .menuAnchor()
         )
@@ -256,7 +241,7 @@ fun GalleryFolderDropdown(galleryFolders: List<GalleryFolder>, modifier: Modifie
             onDismissRequest = {
                 isExpended = false
             },
-            modifier = Modifier
+            modifier = modifier
                 // .requiredSizeIn(maxHeight = 330.dp)
                 .background(Color.White)
         ) {
@@ -269,7 +254,7 @@ fun GalleryFolderDropdown(galleryFolders: List<GalleryFolder>, modifier: Modifie
                     modifier = Modifier
                         .padding(6.dp)
                         .clickable {
-                            selectedFolder = galleryFolder
+                            onFolderSelected(galleryFolder) // Call the callback to update the selected folder
                             isExpended = false
                         }
                 ) {

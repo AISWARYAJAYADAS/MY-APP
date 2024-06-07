@@ -17,7 +17,7 @@ fun GalleryFolderDropdownTextField(
 ) {
     Row(modifier = modifier) {
         Text(text = text, fontSize = 14.sp)
-        Spacer(modifier = Modifier.width(4.dp)) // Adjust spacing as needed
+        Spacer(modifier = Modifier.width(8.dp)) // Adjust spacing as needed
         trailingIcon()
     }
 }

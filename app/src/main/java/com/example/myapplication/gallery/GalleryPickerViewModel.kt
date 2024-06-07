@@ -24,25 +24,34 @@ class GalleryPickerViewModel @Inject constructor(
 ) : ViewModel() {
 
     var galleryClickedItem = MutableLiveData<String>()
-    val galleryFolders = mutableStateOf<List<GalleryFolder>>(emptyList())
+
 
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
 
-    private val galleryFolderList = MutableLiveData<ArrayList<GalleryFolder>>()
-    private val currentMediaFolder = MutableLiveData<String>()
+    val galleryFolders = mutableStateOf<List<GalleryFolder>>(emptyList())
+    val currentMediaFolder =
+        mutableStateOf<GalleryFolder?>(null) // Track the currently selected folder
+
+    // Function to update the currentMediaFolder when a folder is selected
+    fun selectFolder(folder: GalleryFolder) {
+        currentMediaFolder.value = folder
+    }
+
 
     fun getGalleryFolders() {
         coroutineScope.launch {
             Log.d("GalleryPickerViewModel", "Fetching media folders...")
             val mediaFolderList = getMediaFolders()
-            galleryFolderList.postValue(mediaFolderList)
             galleryFolders.value = mediaFolderList
             Log.d("GalleryPickerViewModel", "Media folders fetched: $mediaFolderList")
             Log.d("GalleryPickerViewModel", "Current Media Folder: ${mediaFolderList[0]}")
 
             if (mediaFolderList.isEmpty()) {
-                currentMediaFolder.postValue("")
+                currentMediaFolder.value =
+                    null // Reset currentMediaFolder if no folders are fetched
+                // this happens because initially no folder is select so no need to set value..
+                //  only set value when selected folder is clicked then currentMediaFolder have value ]
             }
         }
     }
@@ -72,8 +81,10 @@ class GalleryPickerViewModel @Inject constructor(
             cursor?.let {
                 do {
                     try {
-                        val folder = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME))
-                        val dataPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
+                        val folder =
+                            cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME))
+                        val dataPath =
+                            cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
                         var folderPaths = dataPath.substring(0, dataPath.lastIndexOf("$folder/"))
                         folderPaths = "$folderPaths$folder/"
                         if (!picPaths.contains(folderPaths)) {
