@@ -72,7 +72,7 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
         if (allPermissionsGranted) {
             hasPermissions = true
             Log.d("GalleryPickerScreen", "All required permissions granted")
-            galleryPickerViewModel.getGalleryFolders()
+            galleryPickerViewModel.loadGalleryFolders()
         } else {
             showPermissionDeniedMessage = true
             Log.d("GalleryPickerScreen", "Permission denied")
@@ -113,7 +113,7 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(galleryPickerViewModel.galleryClickedItem.value)
+                    .data(galleryPickerViewModel.selectedImagePath.value)
                     .crossfade(true)
                     .build(),
                 placeholder = painterResource(R.drawable.ic_profile_image_placeholder),
@@ -128,23 +128,28 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
             if (hasPermissions) {
                 Column {
                     GalleryDropdownAndCameraRow(galleryPickerViewModel)
-                    Log.d("Gallery  Current Media Folder", "Media Folder: ${galleryPickerViewModel.currentMediaFolder}")
-                    Text(text = "Media Folder: ${galleryPickerViewModel.currentMediaFolder.value}")
                     LazyVerticalGrid(
                         columns = GridCells.Adaptive(minSize = 128.dp),
                         verticalArrangement = Arrangement.spacedBy(3.dp),
-                        horizontalArrangement = Arrangement.spacedBy(3.dp)
+                        horizontalArrangement = Arrangement.spacedBy(3.dp),
+                        modifier = Modifier.padding(16.dp)
                     ) {
-                        val photos = ArrayList<String>()
-                        photos.add("https://picsum.photos/id/1/200/300")
-                        photos.add("https://picsum.photos/id/2/200/300")
-                        photos.add("https://picsum.photos/id/3/200/300")
-                        photos.add("https://picsum.photos/id/4/200/300")
-                        items(photos, key = { it }) {
+                        items(galleryPickerViewModel.imagesInSelectedFolder.value) { imagePath ->
                             Surface(
                                 tonalElevation = 3.dp,
-                                modifier = Modifier.aspectRatio(1f)
-                            ) {}
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .clickable {
+                                        galleryPickerViewModel.selectedImagePath.value = imagePath
+                                    }
+                            ) {
+                                AsyncImage(
+                                    model = imagePath,
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
                         }
                     }
                 }
@@ -162,7 +167,7 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
 }
 
 @Composable
-private fun GalleryDropdownAndCameraRow(galleryPickerViewModel: GalleryPickerViewModel) {
+private fun GalleryDropdownAndCameraRow(viewModel: GalleryPickerViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -171,11 +176,10 @@ private fun GalleryDropdownAndCameraRow(galleryPickerViewModel: GalleryPickerVie
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         GalleryFolderDropdown(
-            galleryFolders = galleryPickerViewModel.galleryFolders.value,
-            selectedFolder = galleryPickerViewModel.currentMediaFolder.value, // Pass the selected folder
+            galleryFolders = viewModel.galleryFolders.value,
+            selectedFolder = viewModel.selectedFolder.value,
             onFolderSelected = { folder ->
-                // Update the selected folder in the ViewModel
-                galleryPickerViewModel.currentMediaFolder.value = folder
+                viewModel.selectFolder(folder)
             },
             modifier = Modifier.weight(1f)
         )

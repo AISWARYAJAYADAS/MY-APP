@@ -20,46 +20,64 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GalleryPickerViewModel @Inject constructor(
-    private val cr: ContentResolver?
+    private val contentResolver: ContentResolver?
 ) : ViewModel() {
 
-    var galleryClickedItem = MutableLiveData<String>()
-
+    var selectedImagePath = MutableLiveData<String>()
 
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
 
     val galleryFolders = mutableStateOf<List<GalleryFolder>>(emptyList())
-    val currentMediaFolder =
-        mutableStateOf<GalleryFolder?>(null) // Track the currently selected folder
+    val selectedFolder = mutableStateOf<GalleryFolder?>(null)
+    val imagesInSelectedFolder = mutableStateOf<List<String>>(emptyList())
 
-    // Function to update the currentMediaFolder when a folder is selected
     fun selectFolder(folder: GalleryFolder) {
-        currentMediaFolder.value = folder
+        selectedFolder.value = folder
+        loadImagesForSelectedFolder(folder)
     }
 
-
-    fun getGalleryFolders() {
+    private fun loadImagesForSelectedFolder(folder: GalleryFolder) {
         coroutineScope.launch {
-            Log.d("GalleryPickerViewModel", "Fetching media folders...")
-            val mediaFolderList = getMediaFolders()
-            galleryFolders.value = mediaFolderList
-            Log.d("GalleryPickerViewModel", "Media folders fetched: $mediaFolderList")
-            Log.d("GalleryPickerViewModel", "Current Media Folder: ${mediaFolderList[0]}")
+            val images = getImagesInFolder(folder.folderPath)
+            imagesInSelectedFolder.value = images
+        }
+    }
 
+    private suspend fun getImagesInFolder(folderPath: String): List<String> {
+        val imagePaths = mutableListOf<String>()
+        withContext(Dispatchers.IO) {
+            val mediaUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            val projection = arrayOf(MediaStore.Images.Media.DATA)
+
+            val selection = "${MediaStore.Images.Media.DATA} LIKE ?"
+            val selectionArgs = arrayOf("$folderPath%")
+
+            val cursor = contentResolver?.query(mediaUri, projection, selection, selectionArgs, null)
+            cursor?.use {
+                while (it.moveToNext()) {
+                    val dataPath = it.getString(it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                    imagePaths.add(dataPath)
+                }
+            }
+        }
+        return imagePaths
+    }
+
+    fun loadGalleryFolders() {
+        coroutineScope.launch {
+            val mediaFolderList = fetchGalleryFolders()
+            galleryFolders.value = mediaFolderList
             if (mediaFolderList.isEmpty()) {
-                currentMediaFolder.value =
-                    null // Reset currentMediaFolder if no folders are fetched
-                // this happens because initially no folder is select so no need to set value..
-                //  only set value when selected folder is clicked then currentMediaFolder have value ]
+                selectedFolder.value = null
             }
         }
     }
 
-    private suspend fun getMediaFolders(): ArrayList<GalleryFolder> {
-        val mediaFolders: ArrayList<GalleryFolder> = ArrayList()
+    private suspend fun fetchGalleryFolders(): ArrayList<GalleryFolder> {
+        val mediaFolders = ArrayList<GalleryFolder>()
         withContext(Dispatchers.IO) {
-            val picPaths = ArrayList<String>()
+            val folderPaths = ArrayList<String>()
             val mediaUri = MediaStore.Files.getContentUri("external")
 
             val projection = arrayOf(
@@ -76,40 +94,37 @@ class GalleryPickerViewModel @Inject constructor(
                     "${MediaStore.Images.Media.MIME_TYPE}=?)"
             val selectionArgs = arrayOf("image/jpeg", "image/png", "image/jpg")
 
-            val cursor = cr?.query(mediaUri, projection, selection, selectionArgs, null)
-            cursor?.moveToFirst()
-            cursor?.let {
-                do {
+            val cursor = contentResolver?.query(mediaUri, projection, selection, selectionArgs, null)
+            cursor?.use {
+                while (it.moveToNext()) {
                     try {
-                        val folder =
-                            cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME))
-                        val dataPath =
-                            cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
-                        var folderPaths = dataPath.substring(0, dataPath.lastIndexOf("$folder/"))
-                        folderPaths = "$folderPaths$folder/"
-                        if (!picPaths.contains(folderPaths)) {
-                            picPaths.add(folderPaths)
-                            val item = GalleryFolder(folder, folderPaths, dataPath, false)
-                            item.addPics()
-                            mediaFolders.add(item)
+                        val folderName = it.getString(it.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME))
+                        val dataPath = it.getString(it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
+                        var folderPath = dataPath.substring(0, dataPath.lastIndexOf("$folderName/"))
+                        folderPath = "$folderPath$folderName/"
+                        if (!folderPaths.contains(folderPath)) {
+                            folderPaths.add(folderPath)
+                            val galleryFolder = GalleryFolder(folderName, folderPath, dataPath)
+                            galleryFolder.incrementImageCount()
+                            mediaFolders.add(galleryFolder)
                         } else {
                             for (i in mediaFolders.indices) {
-                                if (mediaFolders[i].folderPath == folderPaths) {
-                                    mediaFolders[i].firstPicPath = dataPath
-                                    mediaFolders[i].addPics()
+                                if (mediaFolders[i].folderPath == folderPath) {
+                                    mediaFolders[i].firstImagePath = dataPath
+                                    mediaFolders[i].incrementImageCount()
                                 }
                             }
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-                } while (cursor.moveToNext())
-                cursor.close()
+                }
             }
         }
         return mediaFolders
     }
 }
+
 
 
 
