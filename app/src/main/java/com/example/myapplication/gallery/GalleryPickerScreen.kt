@@ -66,7 +66,6 @@ import com.example.myapplication.components.CustomAppBar
 import com.example.myapplication.components.GalleryFolderDropdownTextField
 import com.example.myapplication.graphs.CreateListingRoutes
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GalleryPickerScreen(navHostController: NavHostController) {
     val galleryPickerViewModel = hiltViewModel<GalleryPickerViewModel>()
