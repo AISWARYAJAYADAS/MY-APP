@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import com.example.myapplication.BottomBarScreen
 import com.example.myapplication.MainViewModel
 import com.example.myapplication.ScreenContent
+import com.example.myapplication.create_listing.CreateListingScreen
 import com.example.myapplication.gallery.GalleryPickerScreen
 import com.example.myapplication.home.HomeScreen
 import com.example.myapplication.profile.ProfileScreen
@@ -98,6 +99,11 @@ fun NavGraphBuilder.createListingNavGraph(navController: NavHostController) {
 
         composable(route = CreateListingRoutes.GalleryPickerScreen.route) {
             GalleryPickerScreen(navHostController = navController)
+        }
+
+        composable(route = CreateListingRoutes.ListNewItemScreen.route) {
+            CreateListingScreen(
+            )
         }
 
 

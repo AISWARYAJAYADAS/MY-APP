@@ -16,6 +16,7 @@ import kotlinx.coroutines.Job
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,11 +24,11 @@ class GalleryPickerViewModel @Inject constructor(
     private val contentResolver: ContentResolver?
 ) : ViewModel() {
 
-    var selectedImagePath = MutableLiveData<String>()
-
+    var previewImageUrl = mutableStateOf<String?>(null)
+    var selectedImagePaths = mutableStateOf<List<String>>(emptyList()) // Updated for multi-selection
+    var galleryClickedItem = MutableLiveData<String>()
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
-
     val galleryFolders = mutableStateOf<List<GalleryFolder>>(emptyList())
     val selectedFolder = mutableStateOf<GalleryFolder?>(null)
     val imagesInSelectedFolder = mutableStateOf<List<String>>(emptyList())
@@ -40,7 +41,11 @@ class GalleryPickerViewModel @Inject constructor(
     private fun loadImagesForSelectedFolder(folder: GalleryFolder) {
         coroutineScope.launch {
             val images = getImagesInFolder(folder.folderPath)
+                .sortedByDescending { File(it).lastModified() }
             imagesInSelectedFolder.value = images
+            if (images.isNotEmpty()) {
+                previewImageUrl.value = images.first() // Set the preview to the first (latest) image
+            }
         }
     }
 
@@ -53,10 +58,12 @@ class GalleryPickerViewModel @Inject constructor(
             val selection = "${MediaStore.Images.Media.DATA} LIKE ?"
             val selectionArgs = arrayOf("$folderPath%")
 
-            val cursor = contentResolver?.query(mediaUri, projection, selection, selectionArgs, null)
+            val cursor =
+                contentResolver?.query(mediaUri, projection, selection, selectionArgs, null)
             cursor?.use {
                 while (it.moveToNext()) {
-                    val dataPath = it.getString(it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                    val dataPath =
+                        it.getString(it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
                     imagePaths.add(dataPath)
                 }
             }
@@ -94,12 +101,15 @@ class GalleryPickerViewModel @Inject constructor(
                     "${MediaStore.Images.Media.MIME_TYPE}=?)"
             val selectionArgs = arrayOf("image/jpeg", "image/png", "image/jpg")
 
-            val cursor = contentResolver?.query(mediaUri, projection, selection, selectionArgs, null)
+            val cursor =
+                contentResolver?.query(mediaUri, projection, selection, selectionArgs, null)
             cursor?.use {
                 while (it.moveToNext()) {
                     try {
-                        val folderName = it.getString(it.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME))
-                        val dataPath = it.getString(it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
+                        val folderName =
+                            it.getString(it.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME))
+                        val dataPath =
+                            it.getString(it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
                         var folderPath = dataPath.substring(0, dataPath.lastIndexOf("$folderName/"))
                         folderPath = "$folderPath$folderName/"
                         if (!folderPaths.contains(folderPath)) {
@@ -123,7 +133,23 @@ class GalleryPickerViewModel @Inject constructor(
         }
         return mediaFolders
     }
+
+    fun toggleImageSelection(imagePath: String) {
+        if (selectedImagePaths.value.contains(imagePath)) {
+            selectedImagePaths.value = selectedImagePaths.value - imagePath
+        } else {
+            selectedImagePaths.value = selectedImagePaths.value + imagePath
+        }
+        // Update the preview image to the latest selected image
+        if (selectedImagePaths.value.isNotEmpty()) {
+            previewImageUrl.value = selectedImagePaths.value.last()
+        } else {
+            previewImageUrl.value = null
+        }
+    }
 }
+
+
 
 
 

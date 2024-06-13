@@ -59,8 +59,7 @@ fun CustomAppBar(
             if (navigationIcon != null) {
                 navigationIcon()
             }
-        }
-
+        },
 
     )
     }

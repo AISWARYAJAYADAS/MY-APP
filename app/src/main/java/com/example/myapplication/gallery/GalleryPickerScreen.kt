@@ -12,12 +12,23 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -29,30 +40,42 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.example.myapplication.R
 import com.example.myapplication.components.CustomAppBar
 import com.example.myapplication.components.GalleryFolderDropdownTextField
+import com.example.myapplication.graphs.CreateListingRoutes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GalleryPickerScreen(navHostController: NavHostController) {
     val galleryPickerViewModel = hiltViewModel<GalleryPickerViewModel>()
     val context = LocalContext.current
+
+    fun openMediaStore() {
+        galleryPickerViewModel.loadGalleryFolders()
+        galleryPickerViewModel.selectedImagePaths.value = emptyList()
+    }
 
     var hasPermissions by remember { mutableStateOf(false) }
     var showPermissionDeniedMessage by remember { mutableStateOf(false) }
@@ -72,7 +95,7 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
         if (allPermissionsGranted) {
             hasPermissions = true
             Log.d("GalleryPickerScreen", "All required permissions granted")
-            galleryPickerViewModel.loadGalleryFolders()
+            openMediaStore()
         } else {
             showPermissionDeniedMessage = true
             Log.d("GalleryPickerScreen", "Permission denied")
@@ -90,19 +113,57 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
                 navigationIcon = {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_close),
-                        contentDescription = null
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable {
+                                navHostController.popBackStack()
+                            }
                     )
                 },
                 actions = {
-                    Row {
-                        Text(text = stringResource(id = R.string.next), fontSize = 14.sp)
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_next),
-                            contentDescription = null
-                        )
+                    // Check if any image is selected
+                    val isImageSelected =
+                        galleryPickerViewModel.selectedImagePaths.value.isNotEmpty()
+
+                    // Check if any image is selected to enable the row clickable behavior
+                    if (isImageSelected) {
+                        Row(
+                            modifier = Modifier.clickable {
+                                // Handle click action for "Next" here
+                                navHostController.navigate(route = CreateListingRoutes.ListNewItemScreen.route)
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.next),
+                                fontSize = 14.sp,
+                                color = Color.Black,
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_next),
+                                contentDescription = null,
+                                tint = Color.Black,
+                            )
+                        }
+                    } else {
+                        // Row is not clickable when no image is selected
+                        Row {
+                            Text(
+                                text = stringResource(id = R.string.next),
+                                fontSize = 14.sp,
+                                color = Color.Gray,
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_next),
+                                contentDescription = null,
+                                tint = Color.Gray,
+                            )
+                        }
                     }
                 }
+
             )
         }
     ) {
@@ -111,28 +172,23 @@ fun GalleryPickerScreen(navHostController: NavHostController) {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(galleryPickerViewModel.selectedImagePath.value)
-                    .crossfade(true)
-                    .build(),
-                placeholder = painterResource(R.drawable.ic_profile_image_placeholder),
-                error = painterResource(id = R.drawable.ic_profile_image_placeholder),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(365.dp)
-            )
-
             if (hasPermissions) {
+                Log.d(
+                    "GalleryPickerScreen",
+                    "Preview image URL: ${galleryPickerViewModel.previewImageUrl.value}"
+                )
+
+                AsyncImage(
+                    model = galleryPickerViewModel.previewImageUrl.value,
+                    placeholder = painterResource(R.drawable.ic_profile_image_placeholder),
+                    error = painterResource(id = R.drawable.ic_profile_image_placeholder),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(365.dp)
+                )
                 GalleryContent(galleryPickerViewModel)
-//                Column {
-//                    GalleryDropdownAndCameraRow(galleryPickerViewModel)
-//                    ImageGrid(galleryPickerViewModel)
-//                }
-
-
             } else {
                 if (showPermissionDeniedMessage) {
                     PermissionDeniedMessage(context)
@@ -168,24 +224,56 @@ private fun ImageGrid(galleryPickerViewModel: GalleryPickerViewModel) {
         modifier = Modifier.padding(16.dp)
     ) {
         items(galleryPickerViewModel.imagesInSelectedFolder.value) { imagePath ->
+            val isSelected = galleryPickerViewModel.selectedImagePaths.value.contains(imagePath)
+            val selectedIndex =
+                galleryPickerViewModel.selectedImagePaths.value.indexOf(imagePath) + 1
             Surface(
                 tonalElevation = 3.dp,
                 modifier = Modifier
                     .aspectRatio(1f)
                     .clickable {
-                        galleryPickerViewModel.selectedImagePath.value = imagePath
+                        galleryPickerViewModel.toggleImageSelection(imagePath)
                     }
             ) {
-                AsyncImage(
-                    model = imagePath,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
+                Box {
+                    AsyncImage(
+                        model = imagePath,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                    if (isSelected) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color(0x66000000)) // Semi-transparent overlay
+                        ) {
+                            // Round shape with text count
+                            Box(
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd)
+                                    .padding(4.dp)
+                                    .size(24.dp)
+                                    .background(
+                                        color = colorResource(id = R.color.blue),
+                                        shape = CircleShape
+                                    ),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = selectedIndex.toString(),
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 }
+
 
 @Composable
 private fun GalleryDropdownAndCameraRow(viewModel: GalleryPickerViewModel) {
@@ -215,7 +303,6 @@ private fun GalleryDropdownAndCameraRow(viewModel: GalleryPickerViewModel) {
     }
 }
 
-
 @Composable
 fun PermissionDeniedMessage(context: Context) {
     Column(
@@ -235,7 +322,6 @@ fun PermissionDeniedMessage(context: Context) {
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -267,7 +353,6 @@ fun GalleryFolderDropdown(
                 isExpended = false
             },
             modifier = modifier
-                // .requiredSizeIn(maxHeight = 330.dp)
                 .background(Color.White)
         ) {
 
@@ -295,13 +380,11 @@ fun GalleryFolderDropdown(
                     Spacer(modifier = Modifier.height(4.dp))
                     if (index < galleryFolders.size - 1) {
                         Divider()
-
                     }
                 }
             }
-
         }
-
     }
-
 }
+
+
