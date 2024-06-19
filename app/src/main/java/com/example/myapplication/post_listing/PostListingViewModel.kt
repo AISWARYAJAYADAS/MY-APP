@@ -1,8 +1,14 @@
 package com.example.myapplication.post_listing
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.myapplication.DotCApplication
 import com.example.myapplication.R
 import com.example.myapplication.api.model.Output
@@ -10,9 +16,14 @@ import com.example.myapplication.profile.ProfileAchievements
 import com.example.myapplication.profile.ProfileRepository
 import com.example.myapplication.profile.ProfileSnsDetails
 import com.example.myapplication.profile.model.Profile
+import com.example.myapplication.ui.common.DropDownModel
+import com.example.myapplication.utils.AppConstants
 import com.example.myapplication.utils.INDEX
+import com.example.myapplication.utils.ListingSortType
+import com.example.myapplication.utils.ListingStatus
 import com.example.myapplication.utils.manager.ProfileManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +34,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PostListingViewModel @Inject constructor(
     private val repository: ProfileRepository,
-    private val profileManager: ProfileManager
+    private val profileManager: ProfileManager,
+    private val postListingRepository: PostListingRepository
 
 ) : ViewModel() {
     private val _profileDetails = MutableStateFlow<Profile?>(null)
@@ -184,6 +196,106 @@ class PostListingViewModel @Inject constructor(
         }
 
         return snsDetailsList
+    }
+
+
+//    var selectedTabPosition by mutableIntStateOf(0)
+//        private set
+//
+//    var publishedPostsFlow: Flow<PagingData<Post>>? = null
+//    var orderPlacedPostsFlow: Flow<PagingData<Post>>? = null
+//    var orderCompletedPostsFlow: Flow<PagingData<Post>>? = null
+//
+//    fun onTabSelected(tabIndex: Int) {
+//        selectedTabPosition = tabIndex
+//    }
+//
+//    fun getPublishedListings(): Flow<PagingData<Post>> {
+//        return publishedPostsFlow ?: postListingRepository.getPostListing(
+//            limit = AppConstants.API_LISTING_LIMIT,
+//            postStatus = ListingStatus.PUBLISHED,
+//            sortBy = ListingSortType.NEWEST
+//        ).cachedIn(viewModelScope).also {
+//            publishedPostsFlow = it
+//        }
+//    }
+//
+//    fun getOrderPlacedListings(): Flow<PagingData<Post>> {
+//        return orderPlacedPostsFlow ?: postListingRepository.getPostListing(
+//            limit = AppConstants.API_LISTING_LIMIT,
+//            postStatus = ListingStatus.ORDER_PLACED,
+//            sortBy = ListingSortType.NEWEST
+//        ).cachedIn(viewModelScope).also {
+//            orderPlacedPostsFlow = it
+//        }
+//    }
+//
+//    fun getOrderCompletedListings(): Flow<PagingData<Post>> {
+//        return orderCompletedPostsFlow ?: postListingRepository.getPostListing(
+//            limit = AppConstants.API_LISTING_LIMIT,
+//            postStatus = ListingStatus.ORDER_COMPLETED,
+//            sortBy = ListingSortType.NEWEST
+//        ).cachedIn(viewModelScope).also {
+//            orderCompletedPostsFlow = it
+//        }
+//    }
+
+
+
+    var selectedTabPosition by mutableIntStateOf(0)
+        private set
+
+    private val _selectedSortType = MutableStateFlow(ListingSortType.NEWEST)
+    val selectedSortType: StateFlow<String> get() = _selectedSortType
+
+    var publishedPostsFlow: Flow<PagingData<Post>>? = null
+    var orderPlacedPostsFlow: Flow<PagingData<Post>>? = null
+    var orderCompletedPostsFlow: Flow<PagingData<Post>>? = null
+
+
+
+
+
+    fun onTabSelected(tabIndex: Int) {
+        selectedTabPosition = tabIndex
+    }
+
+    fun onSortTypeSelected(sortType: String) {
+        _selectedSortType.value = sortType
+        // Reset flows to trigger new data load with selected sort type
+        publishedPostsFlow = null
+        orderPlacedPostsFlow = null
+        orderCompletedPostsFlow = null
+    }
+
+    fun getPublishedListings(): Flow<PagingData<Post>> {
+        return publishedPostsFlow ?: postListingRepository.getPostListing(
+            limit = AppConstants.API_LISTING_LIMIT,
+            postStatus = ListingStatus.PUBLISHED,
+            sortBy = selectedSortType.value
+        ).cachedIn(viewModelScope).also {
+            publishedPostsFlow = it
+        }
+    }
+
+    fun getOrderPlacedListings(): Flow<PagingData<Post>> {
+        return orderPlacedPostsFlow ?: postListingRepository.getPostListing(
+            limit = AppConstants.API_LISTING_LIMIT,
+            postStatus = ListingStatus.ORDER_PLACED,
+            sortBy = selectedSortType.value
+        ).cachedIn(viewModelScope).also {
+            orderPlacedPostsFlow = it
+        }
+    }
+
+    fun getOrderCompletedListings(): Flow<PagingData<Post>> {
+        return orderCompletedPostsFlow ?: postListingRepository.getPostListing(
+            limit = AppConstants.API_LISTING_LIMIT,
+            postStatus = ListingStatus.ORDER_COMPLETED,
+            sortBy = selectedSortType.value
+        ).cachedIn(viewModelScope).also {
+            orderCompletedPostsFlow = it
+        }
     }
 
 

@@ -3,6 +3,7 @@ package com.example.myapplication.splash
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.api.RefreshTokenApiService
 import com.example.myapplication.pref.SharedPref
+import com.example.myapplication.utils.manager.ConfigurationManager
 import com.example.myapplication.utils.manager.TokenExpiryManager
 import com.google.firebase.installations.FirebaseInstallations
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val sharedPref: SharedPref,
-    private val tokenExpiryManager: TokenExpiryManager
+    private val tokenExpiryManager: TokenExpiryManager,
+    private val configurationManager: ConfigurationManager
 ) : ViewModel() {
 
     fun saveDeviceId() {
@@ -26,35 +28,10 @@ class SplashViewModel @Inject constructor(
     fun isTokenAvailable(): Boolean {
         return tokenExpiryManager.isTokenAvailable()
     }
+
+    fun fetchMasterConfiguration() {
+      //  getUrlConfigurations()
+        configurationManager.callMasterConfiguration()
+    }
 }
 
-
-//@HiltViewModel
-//class SplashViewModel @Inject constructor(
-//    private val sharedPref: SharedPref,
-//    val tokenExpiryManager: TokenExpiryManager
-//) : ViewModel() {
-//
-//    /**
-//     * Saves the device ID to shared preferences.
-//     * Uses FirebaseInstallations to get the device ID and saves it to shared preferences.
-//     */
-//    fun saveDeviceId() {
-//        FirebaseInstallations.getInstance().getToken(true).addOnCompleteListener { task ->
-//            if (task.isSuccessful) {
-//                sharedPref.saveDeviceId(task.result?.token.toString())
-//            }
-//        }
-//    }
-//
-//
-//    /**
-//     * Function that returns the access token from shared preferences.
-//     * */
-//    fun getAuthToken(): String {
-//        return sharedPref.getAccessToken()
-//    }
-//
-//
-//
-//}

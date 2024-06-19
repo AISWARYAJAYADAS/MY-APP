@@ -1,0 +1,2341 @@
+[
+  {
+    "id": 1,
+    "labelJp": "性別",
+    "labelEn": "Gender",
+    "inputType": "dropdown",
+    "type": "master_gender",
+    "options": [
+      {
+        "id": 1,
+        "code": "10048",
+        "labelJp": "男性",
+        "labelEn": "MALE",
+        "value": "1"
+      },
+      {
+        "id": 2,
+        "code": "10047",
+        "labelJp": "女性",
+        "labelEn": "FEMALE",
+        "value": "2"
+      },
+      {
+        "id": 3,
+        "code": "10049",
+        "labelJp": "無回答",
+        "labelEn": "NOT WILLING TO ANSWER",
+        "value": "3"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "labelJp": "好きな〇〇",
+    "labelEn": "Interests",
+    "inputType": "multiselect-dropdown",
+    "type": "master_interest",
+    "options": [
+      {
+        "id": 1,
+        "code": "1016",
+        "labelJp": "映画",
+        "labelEn": "movie",
+        "value": "1016"
+      },
+      {
+        "id": 2,
+        "code": "1017",
+        "labelJp": "スポーツ",
+        "labelEn": "Sports",
+        "value": "1017"
+      },
+      {
+        "id": 3,
+        "code": "1018",
+        "labelJp": "ペット",
+        "labelEn": "Pets",
+        "value": "1018"
+      },
+      {
+        "id": 4,
+        "code": "1019",
+        "labelJp": "食べ物・飲み物",
+        "labelEn": "Food and drink",
+        "value": "1019"
+      },
+      {
+        "id": 5,
+        "code": "1020",
+        "labelJp": "音楽",
+        "labelEn": "music",
+        "value": "1020"
+      },
+      {
+        "id": 6,
+        "code": "2022",
+        "labelJp": "定番アイテム",
+        "labelEn": "Famous Items",
+        "value": "2022"
+      },
+      {
+        "id": 7,
+        "code": "1021",
+        "labelJp": "本・漫画",
+        "labelEn": "Books / manga",
+        "value": "1021"
+      },
+      {
+        "id": 8,
+        "code": "1022",
+        "labelJp": "有名人",
+        "labelEn": "Celebrity",
+        "value": "1022"
+      },
+      {
+        "id": 9,
+        "code": "1023",
+        "labelJp": "ゲーム",
+        "labelEn": "game",
+        "value": "1023"
+      },
+      {
+        "id": 10,
+        "code": "1025",
+        "labelJp": "時間の過ごし方",
+        "labelEn": "How to spend time",
+        "value": "1025"
+      },
+      {
+        "id": 11,
+        "code": "1026",
+        "labelJp": "こと",
+        "labelEn": "matter",
+        "value": "1026"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "labelJp": "身⾧(cm、小数点なし)",
+    "labelEn": "Height (cm without decimal)",
+    "inputType": "dropdown",
+    "type": "master_height",
+    "options": [
+      {
+        "id": 1,
+        "code": "20796",
+        "labelJp": "80cm",
+        "labelEn": "80cm",
+        "value": "80"
+      },
+      {
+        "id": 2,
+        "code": "20797",
+        "labelJp": "81cm",
+        "labelEn": "81cm",
+        "value": "81"
+      },
+      {
+        "id": 3,
+        "code": "20798",
+        "labelJp": "82cm",
+        "labelEn": "82cm",
+        "value": "82"
+      },
+      {
+        "id": 4,
+        "code": "20799",
+        "labelJp": "83cm",
+        "labelEn": "83cm",
+        "value": "83"
+      },
+      {
+        "id": 5,
+        "code": "20800",
+        "labelJp": "84cm",
+        "labelEn": "84cm",
+        "value": "84"
+      },
+      {
+        "id": 6,
+        "code": "20801",
+        "labelJp": "85cm",
+        "labelEn": "85cm",
+        "value": "85"
+      },
+      {
+        "id": 7,
+        "code": "20802",
+        "labelJp": "86cm",
+        "labelEn": "86cm",
+        "value": "86"
+      },
+      {
+        "id": 8,
+        "code": "20803",
+        "labelJp": "87cm",
+        "labelEn": "87cm",
+        "value": "87"
+      },
+      {
+        "id": 9,
+        "code": "20804",
+        "labelJp": "88cm",
+        "labelEn": "88cm",
+        "value": "88"
+      },
+      {
+        "id": 10,
+        "code": "20805",
+        "labelJp": "89cm",
+        "labelEn": "89cm",
+        "value": "89"
+      },
+      {
+        "id": 11,
+        "code": "20806",
+        "labelJp": "90cm",
+        "labelEn": "90cm",
+        "value": "90"
+      },
+      {
+        "id": 12,
+        "code": "20807",
+        "labelJp": "91cm",
+        "labelEn": "91cm",
+        "value": "91"
+      },
+      {
+        "id": 13,
+        "code": "20808",
+        "labelJp": "92cm",
+        "labelEn": "92cm",
+        "value": "92"
+      },
+      {
+        "id": 14,
+        "code": "20809",
+        "labelJp": "93cm",
+        "labelEn": "93cm",
+        "value": "93"
+      },
+      {
+        "id": 15,
+        "code": "20810",
+        "labelJp": "94cm",
+        "labelEn": "94cm",
+        "value": "94"
+      },
+      {
+        "id": 16,
+        "code": "20811",
+        "labelJp": "95cm",
+        "labelEn": "95cm",
+        "value": "95"
+      },
+      {
+        "id": 17,
+        "code": "20812",
+        "labelJp": "96cm",
+        "labelEn": "96cm",
+        "value": "96"
+      },
+      {
+        "id": 18,
+        "code": "20813",
+        "labelJp": "97cm",
+        "labelEn": "97cm",
+        "value": "97"
+      },
+      {
+        "id": 19,
+        "code": "20814",
+        "labelJp": "98cm",
+        "labelEn": "98cm",
+        "value": "98"
+      },
+      {
+        "id": 20,
+        "code": "20815",
+        "labelJp": "99cm",
+        "labelEn": "99cm",
+        "value": "99"
+      },
+      {
+        "id": 21,
+        "code": "20816",
+        "labelJp": "100cm",
+        "labelEn": "100cm",
+        "value": "100"
+      },
+      {
+        "id": 22,
+        "code": "20817",
+        "labelJp": "101cm",
+        "labelEn": "101cm",
+        "value": "101"
+      },
+      {
+        "id": 23,
+        "code": "20818",
+        "labelJp": "102cm",
+        "labelEn": "102cm",
+        "value": "102"
+      },
+      {
+        "id": 24,
+        "code": "20819",
+        "labelJp": "103cm",
+        "labelEn": "103cm",
+        "value": "103"
+      },
+      {
+        "id": 25,
+        "code": "20820",
+        "labelJp": "104cm",
+        "labelEn": "104cm",
+        "value": "104"
+      },
+      {
+        "id": 26,
+        "code": "20821",
+        "labelJp": "105cm",
+        "labelEn": "105cm",
+        "value": "105"
+      },
+      {
+        "id": 27,
+        "code": "20822",
+        "labelJp": "106cm",
+        "labelEn": "106cm",
+        "value": "106"
+      },
+      {
+        "id": 28,
+        "code": "20823",
+        "labelJp": "107cm",
+        "labelEn": "107cm",
+        "value": "107"
+      },
+      {
+        "id": 29,
+        "code": "20824",
+        "labelJp": "108cm",
+        "labelEn": "108cm",
+        "value": "108"
+      },
+      {
+        "id": 30,
+        "code": "20825",
+        "labelJp": "109cm",
+        "labelEn": "109cm",
+        "value": "109"
+      },
+      {
+        "id": 31,
+        "code": "20826",
+        "labelJp": "110cm",
+        "labelEn": "110cm",
+        "value": "110"
+      },
+      {
+        "id": 32,
+        "code": "20827",
+        "labelJp": "111cm",
+        "labelEn": "111cm",
+        "value": "111"
+      },
+      {
+        "id": 33,
+        "code": "20828",
+        "labelJp": "112cm",
+        "labelEn": "112cm",
+        "value": "112"
+      },
+      {
+        "id": 34,
+        "code": "20829",
+        "labelJp": "113cm",
+        "labelEn": "113cm",
+        "value": "113"
+      },
+      {
+        "id": 35,
+        "code": "20830",
+        "labelJp": "114cm",
+        "labelEn": "114cm",
+        "value": "114"
+      },
+      {
+        "id": 36,
+        "code": "20831",
+        "labelJp": "115cm",
+        "labelEn": "115cm",
+        "value": "115"
+      },
+      {
+        "id": 37,
+        "code": "20832",
+        "labelJp": "116cm",
+        "labelEn": "116cm",
+        "value": "116"
+      },
+      {
+        "id": 38,
+        "code": "20833",
+        "labelJp": "117cm",
+        "labelEn": "117cm",
+        "value": "117"
+      },
+      {
+        "id": 39,
+        "code": "20834",
+        "labelJp": "118cm",
+        "labelEn": "118cm",
+        "value": "118"
+      },
+      {
+        "id": 40,
+        "code": "20835",
+        "labelJp": "119cm",
+        "labelEn": "119cm",
+        "value": "119"
+      },
+      {
+        "id": 41,
+        "code": "20836",
+        "labelJp": "120cm",
+        "labelEn": "120cm",
+        "value": "120"
+      },
+      {
+        "id": 42,
+        "code": "20837",
+        "labelJp": "121cm",
+        "labelEn": "121cm",
+        "value": "121"
+      },
+      {
+        "id": 43,
+        "code": "20838",
+        "labelJp": "122cm",
+        "labelEn": "122cm",
+        "value": "122"
+      },
+      {
+        "id": 44,
+        "code": "20839",
+        "labelJp": "123cm",
+        "labelEn": "123cm",
+        "value": "123"
+      },
+      {
+        "id": 45,
+        "code": "20840",
+        "labelJp": "124cm",
+        "labelEn": "124cm",
+        "value": "124"
+      },
+      {
+        "id": 46,
+        "code": "20841",
+        "labelJp": "125cm",
+        "labelEn": "125cm",
+        "value": "125"
+      },
+      {
+        "id": 47,
+        "code": "20842",
+        "labelJp": "126cm",
+        "labelEn": "126cm",
+        "value": "126"
+      },
+      {
+        "id": 48,
+        "code": "20843",
+        "labelJp": "127cm",
+        "labelEn": "127cm",
+        "value": "127"
+      },
+      {
+        "id": 49,
+        "code": "20844",
+        "labelJp": "128cm",
+        "labelEn": "128cm",
+        "value": "128"
+      },
+      {
+        "id": 50,
+        "code": "20845",
+        "labelJp": "129cm",
+        "labelEn": "129cm",
+        "value": "129"
+      },
+      {
+        "id": 51,
+        "code": "20846",
+        "labelJp": "130cm",
+        "labelEn": "130cm",
+        "value": "130"
+      },
+      {
+        "id": 52,
+        "code": "20847",
+        "labelJp": "131cm",
+        "labelEn": "131cm",
+        "value": "131"
+      },
+      {
+        "id": 53,
+        "code": "20848",
+        "labelJp": "132cm",
+        "labelEn": "132cm",
+        "value": "132"
+      },
+      {
+        "id": 54,
+        "code": "20849",
+        "labelJp": "133cm",
+        "labelEn": "133cm",
+        "value": "133"
+      },
+      {
+        "id": 55,
+        "code": "20850",
+        "labelJp": "134cm",
+        "labelEn": "134cm",
+        "value": "134"
+      },
+      {
+        "id": 56,
+        "code": "20851",
+        "labelJp": "135cm",
+        "labelEn": "135cm",
+        "value": "135"
+      },
+      {
+        "id": 57,
+        "code": "20852",
+        "labelJp": "136cm",
+        "labelEn": "136cm",
+        "value": "136"
+      },
+      {
+        "id": 58,
+        "code": "20853",
+        "labelJp": "137cm",
+        "labelEn": "137cm",
+        "value": "137"
+      },
+      {
+        "id": 59,
+        "code": "20854",
+        "labelJp": "138cm",
+        "labelEn": "138cm",
+        "value": "138"
+      },
+      {
+        "id": 60,
+        "code": "20855",
+        "labelJp": "139cm",
+        "labelEn": "139cm",
+        "value": "139"
+      },
+      {
+        "id": 61,
+        "code": "10065",
+        "labelJp": "140cm",
+        "labelEn": "140cm",
+        "value": "140"
+      },
+      {
+        "id": 62,
+        "code": "10066",
+        "labelJp": "141cm",
+        "labelEn": "141cm",
+        "value": "141"
+      },
+      {
+        "id": 63,
+        "code": "10067",
+        "labelJp": "142cm",
+        "labelEn": "142cm",
+        "value": "142"
+      },
+      {
+        "id": 64,
+        "code": "10068",
+        "labelJp": "143cm",
+        "labelEn": "143cm",
+        "value": "143"
+      },
+      {
+        "id": 65,
+        "code": "10069",
+        "labelJp": "144cm",
+        "labelEn": "144cm",
+        "value": "144"
+      },
+      {
+        "id": 66,
+        "code": "10070",
+        "labelJp": "145cm",
+        "labelEn": "145cm",
+        "value": "145"
+      },
+      {
+        "id": 67,
+        "code": "10071",
+        "labelJp": "146cm",
+        "labelEn": "146cm",
+        "value": "146"
+      },
+      {
+        "id": 68,
+        "code": "10072",
+        "labelJp": "147cm",
+        "labelEn": "147cm",
+        "value": "147"
+      },
+      {
+        "id": 69,
+        "code": "10073",
+        "labelJp": "148cm",
+        "labelEn": "148cm",
+        "value": "148"
+      },
+      {
+        "id": 70,
+        "code": "10074",
+        "labelJp": "149cm",
+        "labelEn": "149cm",
+        "value": "149"
+      },
+      {
+        "id": 71,
+        "code": "10075",
+        "labelJp": "150cm",
+        "labelEn": "150cm",
+        "value": "150"
+      },
+      {
+        "id": 72,
+        "code": "10076",
+        "labelJp": "151cm",
+        "labelEn": "151cm",
+        "value": "151"
+      },
+      {
+        "id": 73,
+        "code": "10077",
+        "labelJp": "152cm",
+        "labelEn": "152cm",
+        "value": "152"
+      },
+      {
+        "id": 74,
+        "code": "10078",
+        "labelJp": "153cm",
+        "labelEn": "153cm",
+        "value": "153"
+      },
+      {
+        "id": 75,
+        "code": "10079",
+        "labelJp": "154cm",
+        "labelEn": "154cm",
+        "value": "154"
+      },
+      {
+        "id": 76,
+        "code": "10080",
+        "labelJp": "155cm",
+        "labelEn": "155cm",
+        "value": "155"
+      },
+      {
+        "id": 77,
+        "code": "10081",
+        "labelJp": "156cm",
+        "labelEn": "156cm",
+        "value": "156"
+      },
+      {
+        "id": 78,
+        "code": "10082",
+        "labelJp": "157cm",
+        "labelEn": "157cm",
+        "value": "157"
+      },
+      {
+        "id": 79,
+        "code": "10083",
+        "labelJp": "158cm",
+        "labelEn": "158cm",
+        "value": "158"
+      },
+      {
+        "id": 80,
+        "code": "10084",
+        "labelJp": "159cm",
+        "labelEn": "159cm",
+        "value": "159"
+      },
+      {
+        "id": 81,
+        "code": "10085",
+        "labelJp": "160cm",
+        "labelEn": "160cm",
+        "value": "160"
+      },
+      {
+        "id": 82,
+        "code": "10086",
+        "labelJp": "161cm",
+        "labelEn": "161cm",
+        "value": "161"
+      },
+      {
+        "id": 83,
+        "code": "10087",
+        "labelJp": "162cm",
+        "labelEn": "162cm",
+        "value": "162"
+      },
+      {
+        "id": 84,
+        "code": "10088",
+        "labelJp": "163cm",
+        "labelEn": "163cm",
+        "value": "163"
+      },
+      {
+        "id": 85,
+        "code": "10089",
+        "labelJp": "164cm",
+        "labelEn": "164cm",
+        "value": "164"
+      },
+      {
+        "id": 86,
+        "code": "10090",
+        "labelJp": "165cm",
+        "labelEn": "165cm",
+        "value": "165"
+      },
+      {
+        "id": 87,
+        "code": "10091",
+        "labelJp": "166cm",
+        "labelEn": "166cm",
+        "value": "166"
+      },
+      {
+        "id": 88,
+        "code": "10092",
+        "labelJp": "167cm",
+        "labelEn": "167cm",
+        "value": "167"
+      },
+      {
+        "id": 89,
+        "code": "10093",
+        "labelJp": "168cm",
+        "labelEn": "168cm",
+        "value": "168"
+      },
+      {
+        "id": 90,
+        "code": "10094",
+        "labelJp": "169cm",
+        "labelEn": "169cm",
+        "value": "169"
+      },
+      {
+        "id": 91,
+        "code": "10095",
+        "labelJp": "170cm",
+        "labelEn": "170cm",
+        "value": "170"
+      },
+      {
+        "id": 92,
+        "code": "10096",
+        "labelJp": "171cm",
+        "labelEn": "171cm",
+        "value": "171"
+      },
+      {
+        "id": 93,
+        "code": "10097",
+        "labelJp": "172cm",
+        "labelEn": "172cm",
+        "value": "172"
+      },
+      {
+        "id": 94,
+        "code": "10098",
+        "labelJp": "173cm",
+        "labelEn": "173cm",
+        "value": "173"
+      },
+      {
+        "id": 95,
+        "code": "10099",
+        "labelJp": "174cm",
+        "labelEn": "174cm",
+        "value": "174"
+      },
+      {
+        "id": 96,
+        "code": "10100",
+        "labelJp": "175cm",
+        "labelEn": "175cm",
+        "value": "175"
+      },
+      {
+        "id": 97,
+        "code": "10101",
+        "labelJp": "176cm",
+        "labelEn": "176cm",
+        "value": "176"
+      },
+      {
+        "id": 98,
+        "code": "10102",
+        "labelJp": "177cm",
+        "labelEn": "177cm",
+        "value": "177"
+      },
+      {
+        "id": 99,
+        "code": "10103",
+        "labelJp": "178cm",
+        "labelEn": "178cm",
+        "value": "178"
+      },
+      {
+        "id": 100,
+        "code": "10104",
+        "labelJp": "179cm",
+        "labelEn": "179cm",
+        "value": "179"
+      },
+      {
+        "id": 101,
+        "code": "10105",
+        "labelJp": "180cm",
+        "labelEn": "180cm",
+        "value": "180"
+      },
+      {
+        "id": 102,
+        "code": "10106",
+        "labelJp": "181cm",
+        "labelEn": "181cm",
+        "value": "181"
+      },
+      {
+        "id": 103,
+        "code": "10107",
+        "labelJp": "182cm",
+        "labelEn": "182cm",
+        "value": "182"
+      },
+      {
+        "id": 104,
+        "code": "10108",
+        "labelJp": "183cm",
+        "labelEn": "183cm",
+        "value": "183"
+      },
+      {
+        "id": 105,
+        "code": "10109",
+        "labelJp": "184cm",
+        "labelEn": "184cm",
+        "value": "184"
+      },
+      {
+        "id": 106,
+        "code": "10110",
+        "labelJp": "185cm",
+        "labelEn": "185cm",
+        "value": "185"
+      },
+      {
+        "id": 107,
+        "code": "10111",
+        "labelJp": "186cm",
+        "labelEn": "186cm",
+        "value": "186"
+      },
+      {
+        "id": 108,
+        "code": "10112",
+        "labelJp": "187cm",
+        "labelEn": "187cm",
+        "value": "187"
+      },
+      {
+        "id": 109,
+        "code": "10113",
+        "labelJp": "188cm",
+        "labelEn": "188cm",
+        "value": "188"
+      },
+      {
+        "id": 110,
+        "code": "10114",
+        "labelJp": "189cm",
+        "labelEn": "189cm",
+        "value": "189"
+      },
+      {
+        "id": 111,
+        "code": "10115",
+        "labelJp": "190cm",
+        "labelEn": "190cm",
+        "value": "190"
+      },
+      {
+        "id": 112,
+        "code": "10116",
+        "labelJp": "191cm",
+        "labelEn": "191cm",
+        "value": "191"
+      },
+      {
+        "id": 113,
+        "code": "10117",
+        "labelJp": "192cm",
+        "labelEn": "192cm",
+        "value": "192"
+      },
+      {
+        "id": 114,
+        "code": "10118",
+        "labelJp": "193cm",
+        "labelEn": "193cm",
+        "value": "193"
+      },
+      {
+        "id": 115,
+        "code": "10119",
+        "labelJp": "194cm",
+        "labelEn": "194cm",
+        "value": "194"
+      },
+      {
+        "id": 116,
+        "code": "10120",
+        "labelJp": "195cm",
+        "labelEn": "195cm",
+        "value": "195"
+      },
+      {
+        "id": 117,
+        "code": "10121",
+        "labelJp": "196cm",
+        "labelEn": "196cm",
+        "value": "196"
+      },
+      {
+        "id": 118,
+        "code": "10122",
+        "labelJp": "197cm",
+        "labelEn": "197cm",
+        "value": "197"
+      },
+      {
+        "id": 119,
+        "code": "10123",
+        "labelJp": "198cm",
+        "labelEn": "198cm",
+        "value": "198"
+      },
+      {
+        "id": 120,
+        "code": "10124",
+        "labelJp": "199cm",
+        "labelEn": "199cm",
+        "value": "199"
+      },
+      {
+        "id": 121,
+        "code": "10125",
+        "labelJp": "200cm",
+        "labelEn": "200cm",
+        "value": "200"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "labelJp": "体重(kg、小数点なし)",
+    "labelEn": "Weight (kg without decimal)",
+    "inputType": "dropdown",
+    "type": "master_weight",
+    "options": [
+      {
+        "id": 1,
+        "code": "20657",
+        "labelJp": "15kg",
+        "labelEn": "15kg",
+        "value": "15"
+      },
+      {
+        "id": 2,
+        "code": "20658",
+        "labelJp": "16kg",
+        "labelEn": "16kg",
+        "value": "16"
+      },
+      {
+        "id": 3,
+        "code": "20659",
+        "labelJp": "17kg",
+        "labelEn": "17kg",
+        "value": "17"
+      },
+      {
+        "id": 4,
+        "code": "20660",
+        "labelJp": "18kg",
+        "labelEn": "18kg",
+        "value": "18"
+      },
+      {
+        "id": 5,
+        "code": "20661",
+        "labelJp": "19kg",
+        "labelEn": "19kg",
+        "value": "19"
+      },
+      {
+        "id": 6,
+        "code": "20662",
+        "labelJp": "20kg",
+        "labelEn": "20kg",
+        "value": "20"
+      },
+      {
+        "id": 7,
+        "code": "20663",
+        "labelJp": "21kg",
+        "labelEn": "21kg",
+        "value": "21"
+      },
+      {
+        "id": 8,
+        "code": "20664",
+        "labelJp": "22kg",
+        "labelEn": "22kg",
+        "value": "22"
+      },
+      {
+        "id": 9,
+        "code": "20665",
+        "labelJp": "23kg",
+        "labelEn": "23kg",
+        "value": "23"
+      },
+      {
+        "id": 10,
+        "code": "20666",
+        "labelJp": "24kg",
+        "labelEn": "24kg",
+        "value": "24"
+      },
+      {
+        "id": 11,
+        "code": "20667",
+        "labelJp": "25kg",
+        "labelEn": "25kg",
+        "value": "25"
+      },
+      {
+        "id": 12,
+        "code": "20668",
+        "labelJp": "26kg",
+        "labelEn": "26kg",
+        "value": "26"
+      },
+      {
+        "id": 13,
+        "code": "20669",
+        "labelJp": "27kg",
+        "labelEn": "27kg",
+        "value": "27"
+      },
+      {
+        "id": 14,
+        "code": "20670",
+        "labelJp": "28kg",
+        "labelEn": "28kg",
+        "value": "28"
+      },
+      {
+        "id": 15,
+        "code": "20671",
+        "labelJp": "29kg",
+        "labelEn": "29kg",
+        "value": "29"
+      },
+      {
+        "id": 16,
+        "code": "20672",
+        "labelJp": "30kg",
+        "labelEn": "30kg",
+        "value": "30"
+      },
+      {
+        "id": 17,
+        "code": "20673",
+        "labelJp": "31kg",
+        "labelEn": "31kg",
+        "value": "31"
+      },
+      {
+        "id": 18,
+        "code": "20674",
+        "labelJp": "32kg",
+        "labelEn": "32kg",
+        "value": "32"
+      },
+      {
+        "id": 19,
+        "code": "20675",
+        "labelJp": "33kg",
+        "labelEn": "33kg",
+        "value": "33"
+      },
+      {
+        "id": 20,
+        "code": "20676",
+        "labelJp": "34kg",
+        "labelEn": "34kg",
+        "value": "34"
+      },
+      {
+        "id": 21,
+        "code": "20677",
+        "labelJp": "35kg",
+        "labelEn": "35kg",
+        "value": "35"
+      },
+      {
+        "id": 22,
+        "code": "20678",
+        "labelJp": "36kg",
+        "labelEn": "36kg",
+        "value": "36"
+      },
+      {
+        "id": 23,
+        "code": "20679",
+        "labelJp": "37kg",
+        "labelEn": "37kg",
+        "value": "37"
+      },
+      {
+        "id": 24,
+        "code": "20680",
+        "labelJp": "38kg",
+        "labelEn": "38kg",
+        "value": "38"
+      },
+      {
+        "id": 25,
+        "code": "20681",
+        "labelJp": "39kg",
+        "labelEn": "39kg",
+        "value": "39"
+      },
+      {
+        "id": 26,
+        "code": "20682",
+        "labelJp": "40kg",
+        "labelEn": "40kg",
+        "value": "40"
+      },
+      {
+        "id": 27,
+        "code": "20683",
+        "labelJp": "41kg",
+        "labelEn": "41kg",
+        "value": "41"
+      },
+      {
+        "id": 28,
+        "code": "20684",
+        "labelJp": "42kg",
+        "labelEn": "42kg",
+        "value": "42"
+      },
+      {
+        "id": 29,
+        "code": "20685",
+        "labelJp": "43kg",
+        "labelEn": "43kg",
+        "value": "43"
+      },
+      {
+        "id": 30,
+        "code": "20686",
+        "labelJp": "44kg",
+        "labelEn": "44kg",
+        "value": "44"
+      },
+      {
+        "id": 31,
+        "code": "20687",
+        "labelJp": "45kg",
+        "labelEn": "45kg",
+        "value": "45"
+      },
+      {
+        "id": 32,
+        "code": "20688",
+        "labelJp": "46kg",
+        "labelEn": "46kg",
+        "value": "46"
+      },
+      {
+        "id": 33,
+        "code": "20689",
+        "labelJp": "47kg",
+        "labelEn": "47kg",
+        "value": "47"
+      },
+      {
+        "id": 34,
+        "code": "20690",
+        "labelJp": "48kg",
+        "labelEn": "48kg",
+        "value": "48"
+      },
+      {
+        "id": 35,
+        "code": "20691",
+        "labelJp": "49kg",
+        "labelEn": "49kg",
+        "value": "49"
+      },
+      {
+        "id": 36,
+        "code": "20692",
+        "labelJp": "50kg",
+        "labelEn": "50kg",
+        "value": "50"
+      },
+      {
+        "id": 37,
+        "code": "20693",
+        "labelJp": "51kg",
+        "labelEn": "51kg",
+        "value": "51"
+      },
+      {
+        "id": 38,
+        "code": "20694",
+        "labelJp": "52kg",
+        "labelEn": "52kg",
+        "value": "52"
+      },
+      {
+        "id": 39,
+        "code": "20695",
+        "labelJp": "53kg",
+        "labelEn": "53kg",
+        "value": "53"
+      },
+      {
+        "id": 40,
+        "code": "20696",
+        "labelJp": "54kg",
+        "labelEn": "54kg",
+        "value": "54"
+      },
+      {
+        "id": 41,
+        "code": "20697",
+        "labelJp": "55kg",
+        "labelEn": "55kg",
+        "value": "55"
+      },
+      {
+        "id": 42,
+        "code": "20698",
+        "labelJp": "56kg",
+        "labelEn": "56kg",
+        "value": "56"
+      },
+      {
+        "id": 43,
+        "code": "20699",
+        "labelJp": "57kg",
+        "labelEn": "57kg",
+        "value": "57"
+      },
+      {
+        "id": 44,
+        "code": "20700",
+        "labelJp": "58kg",
+        "labelEn": "58kg",
+        "value": "58"
+      },
+      {
+        "id": 45,
+        "code": "20701",
+        "labelJp": "59kg",
+        "labelEn": "59kg",
+        "value": "59"
+      },
+      {
+        "id": 46,
+        "code": "20702",
+        "labelJp": "60kg",
+        "labelEn": "60kg",
+        "value": "60"
+      },
+      {
+        "id": 47,
+        "code": "20703",
+        "labelJp": "61kg",
+        "labelEn": "61kg",
+        "value": "61"
+      },
+      {
+        "id": 48,
+        "code": "20704",
+        "labelJp": "62kg",
+        "labelEn": "62kg",
+        "value": "62"
+      },
+      {
+        "id": 49,
+        "code": "20705",
+        "labelJp": "63kg",
+        "labelEn": "63kg",
+        "value": "63"
+      },
+      {
+        "id": 50,
+        "code": "20706",
+        "labelJp": "64kg",
+        "labelEn": "64kg",
+        "value": "64"
+      },
+      {
+        "id": 51,
+        "code": "20707",
+        "labelJp": "65kg",
+        "labelEn": "65kg",
+        "value": "65"
+      },
+      {
+        "id": 52,
+        "code": "20708",
+        "labelJp": "66kg",
+        "labelEn": "66kg",
+        "value": "66"
+      },
+      {
+        "id": 53,
+        "code": "20709",
+        "labelJp": "67kg",
+        "labelEn": "67kg",
+        "value": "67"
+      },
+      {
+        "id": 54,
+        "code": "20710",
+        "labelJp": "68kg",
+        "labelEn": "68kg",
+        "value": "68"
+      },
+      {
+        "id": 55,
+        "code": "20711",
+        "labelJp": "69kg",
+        "labelEn": "69kg",
+        "value": "69"
+      },
+      {
+        "id": 56,
+        "code": "20712",
+        "labelJp": "70kg",
+        "labelEn": "70kg",
+        "value": "70"
+      },
+      {
+        "id": 57,
+        "code": "20713",
+        "labelJp": "71kg",
+        "labelEn": "71kg",
+        "value": "71"
+      },
+      {
+        "id": 58,
+        "code": "20714",
+        "labelJp": "72kg",
+        "labelEn": "72kg",
+        "value": "72"
+      },
+      {
+        "id": 59,
+        "code": "20715",
+        "labelJp": "73kg",
+        "labelEn": "73kg",
+        "value": "73"
+      },
+      {
+        "id": 60,
+        "code": "20716",
+        "labelJp": "74kg",
+        "labelEn": "74kg",
+        "value": "74"
+      },
+      {
+        "id": 61,
+        "code": "20717",
+        "labelJp": "75kg",
+        "labelEn": "75kg",
+        "value": "75"
+      },
+      {
+        "id": 62,
+        "code": "20718",
+        "labelJp": "76kg",
+        "labelEn": "76kg",
+        "value": "76"
+      },
+      {
+        "id": 63,
+        "code": "20719",
+        "labelJp": "77kg",
+        "labelEn": "77kg",
+        "value": "77"
+      },
+      {
+        "id": 64,
+        "code": "20720",
+        "labelJp": "78kg",
+        "labelEn": "78kg",
+        "value": "78"
+      },
+      {
+        "id": 65,
+        "code": "20721",
+        "labelJp": "79kg",
+        "labelEn": "79kg",
+        "value": "79"
+      },
+      {
+        "id": 66,
+        "code": "20722",
+        "labelJp": "80kg",
+        "labelEn": "80kg",
+        "value": "80"
+      },
+      {
+        "id": 67,
+        "code": "20723",
+        "labelJp": "81kg",
+        "labelEn": "81kg",
+        "value": "81"
+      },
+      {
+        "id": 68,
+        "code": "20724",
+        "labelJp": "82kg",
+        "labelEn": "82kg",
+        "value": "82"
+      },
+      {
+        "id": 69,
+        "code": "20725",
+        "labelJp": "83kg",
+        "labelEn": "83kg",
+        "value": "83"
+      },
+      {
+        "id": 70,
+        "code": "20726",
+        "labelJp": "84kg",
+        "labelEn": "84kg",
+        "value": "84"
+      },
+      {
+        "id": 71,
+        "code": "20727",
+        "labelJp": "85kg",
+        "labelEn": "85kg",
+        "value": "85"
+      },
+      {
+        "id": 72,
+        "code": "20728",
+        "labelJp": "86kg",
+        "labelEn": "86kg",
+        "value": "86"
+      },
+      {
+        "id": 73,
+        "code": "20729",
+        "labelJp": "87kg",
+        "labelEn": "87kg",
+        "value": "87"
+      },
+      {
+        "id": 74,
+        "code": "20730",
+        "labelJp": "88kg",
+        "labelEn": "88kg",
+        "value": "88"
+      },
+      {
+        "id": 75,
+        "code": "20731",
+        "labelJp": "89kg",
+        "labelEn": "89kg",
+        "value": "89"
+      },
+      {
+        "id": 76,
+        "code": "20732",
+        "labelJp": "90kg",
+        "labelEn": "90kg",
+        "value": "90"
+      },
+      {
+        "id": 77,
+        "code": "20733",
+        "labelJp": "91kg",
+        "labelEn": "91kg",
+        "value": "91"
+      },
+      {
+        "id": 78,
+        "code": "20734",
+        "labelJp": "92kg",
+        "labelEn": "92kg",
+        "value": "92"
+      },
+      {
+        "id": 79,
+        "code": "20735",
+        "labelJp": "93kg",
+        "labelEn": "93kg",
+        "value": "93"
+      },
+      {
+        "id": 80,
+        "code": "20736",
+        "labelJp": "94kg",
+        "labelEn": "94kg",
+        "value": "94"
+      },
+      {
+        "id": 81,
+        "code": "20737",
+        "labelJp": "95kg",
+        "labelEn": "95kg",
+        "value": "95"
+      },
+      {
+        "id": 82,
+        "code": "20738",
+        "labelJp": "96kg",
+        "labelEn": "96kg",
+        "value": "96"
+      },
+      {
+        "id": 83,
+        "code": "20739",
+        "labelJp": "97kg",
+        "labelEn": "97kg",
+        "value": "97"
+      },
+      {
+        "id": 84,
+        "code": "20740",
+        "labelJp": "98kg",
+        "labelEn": "98kg",
+        "value": "98"
+      },
+      {
+        "id": 85,
+        "code": "20741",
+        "labelJp": "99kg",
+        "labelEn": "99kg",
+        "value": "99"
+      },
+      {
+        "id": 86,
+        "code": "20742",
+        "labelJp": "100kg",
+        "labelEn": "100kg",
+        "value": "100"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "labelJp": "体型",
+    "labelEn": "Body shape",
+    "inputType": "dropdown",
+    "type": "master_body_shape",
+    "options": [
+      {
+        "id": 1,
+        "code": "10182",
+        "labelJp": "スリム",
+        "labelEn": "Slim",
+        "value": "01"
+      },
+      {
+        "id": 2,
+        "code": "10183",
+        "labelJp": "グラマー",
+        "labelEn": "Glamour",
+        "value": "02"
+      },
+      {
+        "id": 3,
+        "code": "10184",
+        "labelJp": "やや細め",
+        "labelEn": "Slightly thin",
+        "value": "03"
+      },
+      {
+        "id": 4,
+        "code": "10185",
+        "labelJp": "普通",
+        "labelEn": "Normal",
+        "value": "04"
+      },
+      {
+        "id": 5,
+        "code": "10186",
+        "labelJp": "ややぽっちゃり",
+        "labelEn": "Slightly chubby",
+        "value": "05"
+      },
+      {
+        "id": 6,
+        "code": "10187",
+        "labelJp": "ぽっちゃり",
+        "labelEn": "Chubby",
+        "value": "06"
+      },
+      {
+        "id": 7,
+        "code": "10188",
+        "labelJp": "筋肉質",
+        "labelEn": "Muscular",
+        "value": "07"
+      },
+      {
+        "id": 8,
+        "code": "10189",
+        "labelJp": "やせ型",
+        "labelEn": "Thin type",
+        "value": "08"
+      },
+      {
+        "id": 9,
+        "code": "10190",
+        "labelJp": "妊婦",
+        "labelEn": "Pregnant woman",
+        "value": "09"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "labelJp": "足のサイズ",
+    "labelEn": "Shoe size (cm with decimal point below 1)",
+    "inputType": "dropdown",
+    "type": "master_shoe_size",
+    "options": [
+      {
+        "id": 1,
+        "code": "10146",
+        "labelJp": "15cm",
+        "labelEn": "15",
+        "value": "15"
+      },
+      {
+        "id": 2,
+        "code": "20743",
+        "labelJp": "15.5cm",
+        "labelEn": "15.5",
+        "value": "15.5"
+      },
+      {
+        "id": 3,
+        "code": "10147",
+        "labelJp": "16cm",
+        "labelEn": "16",
+        "value": "16"
+      },
+      {
+        "id": 4,
+        "code": "20744",
+        "labelJp": "16.5cm",
+        "labelEn": "16.5",
+        "value": "16.5"
+      },
+      {
+        "id": 5,
+        "code": "10148",
+        "labelJp": "17cm",
+        "labelEn": "17",
+        "value": "17"
+      },
+      {
+        "id": 6,
+        "code": "20745",
+        "labelJp": "17.5cm",
+        "labelEn": "17.5",
+        "value": "17.5"
+      },
+      {
+        "id": 7,
+        "code": "10149",
+        "labelJp": "18cm",
+        "labelEn": "18",
+        "value": "18"
+      },
+      {
+        "id": 8,
+        "code": "20746",
+        "labelJp": "18.5cm",
+        "labelEn": "18.5",
+        "value": "18.5"
+      },
+      {
+        "id": 9,
+        "code": "10150",
+        "labelJp": "19cm",
+        "labelEn": "19",
+        "value": "19"
+      },
+      {
+        "id": 10,
+        "code": "20747",
+        "labelJp": "19.5cm",
+        "labelEn": "19.5",
+        "value": "19.5"
+      },
+      {
+        "id": 11,
+        "code": "10151",
+        "labelJp": "20cm",
+        "labelEn": "20",
+        "value": "20"
+      },
+      {
+        "id": 12,
+        "code": "10152",
+        "labelJp": "20.5cm",
+        "labelEn": "20.5",
+        "value": "20.5"
+      },
+      {
+        "id": 13,
+        "code": "10153",
+        "labelJp": "21cm",
+        "labelEn": "21",
+        "value": "21"
+      },
+      {
+        "id": 14,
+        "code": "10154",
+        "labelJp": "21.5cm",
+        "labelEn": "21.5",
+        "value": "21.5"
+      },
+      {
+        "id": 15,
+        "code": "10155",
+        "labelJp": "22cm",
+        "labelEn": "22",
+        "value": "22"
+      },
+      {
+        "id": 16,
+        "code": "10156",
+        "labelJp": "22.5cm",
+        "labelEn": "22.5",
+        "value": "22.5"
+      },
+      {
+        "id": 17,
+        "code": "10157",
+        "labelJp": "23cm",
+        "labelEn": "23",
+        "value": "23"
+      },
+      {
+        "id": 18,
+        "code": "10158",
+        "labelJp": "23.5cm",
+        "labelEn": "23.5",
+        "value": "23.5"
+      },
+      {
+        "id": 19,
+        "code": "10159",
+        "labelJp": "24cm",
+        "labelEn": "24",
+        "value": "24"
+      },
+      {
+        "id": 20,
+        "code": "10160",
+        "labelJp": "24.5cm",
+        "labelEn": "24.5",
+        "value": "24.5"
+      },
+      {
+        "id": 21,
+        "code": "10161",
+        "labelJp": "25cm",
+        "labelEn": "25",
+        "value": "25"
+      },
+      {
+        "id": 22,
+        "code": "10162",
+        "labelJp": "25.5cm",
+        "labelEn": "25.5",
+        "value": "25.5"
+      },
+      {
+        "id": 23,
+        "code": "10163",
+        "labelJp": "26cm",
+        "labelEn": "26",
+        "value": "26"
+      },
+      {
+        "id": 24,
+        "code": "10164",
+        "labelJp": "26.5cm",
+        "labelEn": "26.5",
+        "value": "26.5"
+      },
+      {
+        "id": 25,
+        "code": "10165",
+        "labelJp": "27cm",
+        "labelEn": "27",
+        "value": "27"
+      },
+      {
+        "id": 26,
+        "code": "10166",
+        "labelJp": "27.5cm",
+        "labelEn": "27.5",
+        "value": "27.5"
+      },
+      {
+        "id": 27,
+        "code": "10167",
+        "labelJp": "28cm",
+        "labelEn": "28",
+        "value": "28"
+      },
+      {
+        "id": 28,
+        "code": "10168",
+        "labelJp": "28.5cm",
+        "labelEn": "28.5",
+        "value": "28.5"
+      },
+      {
+        "id": 29,
+        "code": "20748",
+        "labelJp": "29cm",
+        "labelEn": "29",
+        "value": "29"
+      },
+      {
+        "id": 30,
+        "code": "20749",
+        "labelJp": "29.5cm",
+        "labelEn": "29.5",
+        "value": "29.5"
+      },
+      {
+        "id": 31,
+        "code": "20750",
+        "labelJp": "30cm",
+        "labelEn": "30",
+        "value": "30"
+      },
+      {
+        "id": 32,
+        "code": "20751",
+        "labelJp": "30.5cm",
+        "labelEn": "30.5",
+        "value": "30.5"
+      },
+      {
+        "id": 33,
+        "code": "20752",
+        "labelJp": "31cm",
+        "labelEn": "31",
+        "value": "31"
+      },
+      {
+        "id": 34,
+        "code": "20753",
+        "labelJp": "31.5cm",
+        "labelEn": "31.5",
+        "value": "31.5"
+      },
+      {
+        "id": 35,
+        "code": "20754",
+        "labelJp": "32cm",
+        "labelEn": "32",
+        "value": "32"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "labelJp": "パーソナルカラー",
+    "labelEn": "Personal colour",
+    "inputType": "dropdown",
+    "type": "master_personal_color",
+    "options": [
+      {
+        "id": 1,
+        "code": "10194",
+        "labelJp": "イエベ春",
+        "labelEn": "Yellow spring",
+        "value": "01"
+      },
+      {
+        "id": 2,
+        "code": "10195",
+        "labelJp": "イエベ秋",
+        "labelEn": "Yellow autumn",
+        "value": "02"
+      },
+      {
+        "id": 3,
+        "code": "10196",
+        "labelJp": "ブルべ夏",
+        "labelEn": "Blue summer",
+        "value": "03"
+      },
+      {
+        "id": 4,
+        "code": "10197",
+        "labelJp": "ブルべ冬",
+        "labelEn": "Blue winter",
+        "value": "04"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "labelJp": "骨格診断",
+    "labelEn": "Shoulder Stature",
+    "inputType": "dropdown",
+    "type": "master_shoulder_stature",
+    "options": [
+      {
+        "id": 1,
+        "code": "10191",
+        "labelJp": "骨格ストレート",
+        "labelEn": "Straight",
+        "value": "01"
+      },
+      {
+        "id": 2,
+        "code": "10192",
+        "labelJp": "骨格ウェーブ",
+        "labelEn": "Wave",
+        "value": "02"
+      },
+      {
+        "id": 3,
+        "code": "10193",
+        "labelJp": "骨格ナチュラル",
+        "labelEn": "Neutral",
+        "value": "03"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "labelJp": "投稿タグ",
+    "labelEn": "Post tags",
+    "inputType": "multiselect-dropdown",
+    "type": "master_post_tag",
+    "options": [
+      {
+        "id": 1,
+        "code": "0000",
+        "labelJp": "製品カテゴリ",
+        "labelEn": "product_category",
+        "value": "0000"
+      },
+      {
+        "id": 2,
+        "code": "2002",
+        "labelJp": "シーン",
+        "labelEn": "scene",
+        "value": "2002"
+      },
+      {
+        "id": 3,
+        "code": "2076",
+        "labelJp": "位置",
+        "labelEn": "location",
+        "value": "2076"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "labelJp": "得意なスタイリング",
+    "labelEn": "Specific styling",
+    "inputType": "dropdown",
+    "type": "master_specific_styling",
+    "options": [
+      {
+        "id": 1,
+        "code": "10210",
+        "labelJp": "高身長",
+        "labelEn": "Tall",
+        "value": "01"
+      },
+      {
+        "id": 2,
+        "code": "10211",
+        "labelJp": "低身長",
+        "labelEn": "Short stature",
+        "value": "02"
+      },
+      {
+        "id": 3,
+        "code": "10212",
+        "labelJp": "体型カバー",
+        "labelEn": "Body cover",
+        "value": "03"
+      },
+      {
+        "id": 4,
+        "code": "20755",
+        "labelJp": "着痩せ・細見え",
+        "labelEn": "Wearing thin/Looking fine",
+        "value": "04"
+      },
+      {
+        "id": 5,
+        "code": "10214",
+        "labelJp": "女子ウケ",
+        "labelEn": "Women's Uke",
+        "value": "05"
+      },
+      {
+        "id": 6,
+        "code": "10215",
+        "labelJp": "若見え",
+        "labelEn": "Looks young",
+        "value": "06"
+      },
+      {
+        "id": 7,
+        "code": "10217",
+        "labelJp": "高見え",
+        "labelEn": "Tall look",
+        "value": "08"
+      },
+      {
+        "id": 8,
+        "code": "10216",
+        "labelJp": "差し色コーデ",
+        "labelEn": "Color coordination",
+        "value": "07"
+      },
+      {
+        "id": 9,
+        "code": "10218",
+        "labelJp": "個性派",
+        "labelEn": "Individuality",
+        "value": "09"
+      },
+      {
+        "id": 10,
+        "code": "10219",
+        "labelJp": "韓国系",
+        "labelEn": "Korean",
+        "value": "10"
+      },
+      {
+        "id": 11,
+        "code": "10220",
+        "labelJp": "ワントーン",
+        "labelEn": "One tone",
+        "value": "11"
+      },
+      {
+        "id": 12,
+        "code": "10221",
+        "labelJp": "リラックス",
+        "labelEn": "Relax",
+        "value": "12"
+      },
+      {
+        "id": 13,
+        "code": "10222",
+        "labelJp": "ラフ",
+        "labelEn": "Rough",
+        "value": "13"
+      },
+      {
+        "id": 14,
+        "code": "10223",
+        "labelJp": "ユニセックス",
+        "labelEn": "Unisex",
+        "value": "14"
+      },
+      {
+        "id": 15,
+        "code": "10224",
+        "labelJp": "ゆったり",
+        "labelEn": "Comfortable",
+        "value": "15"
+      },
+      {
+        "id": 16,
+        "code": "10225",
+        "labelJp": "モテ",
+        "labelEn": "Mote",
+        "value": "16"
+      },
+      {
+        "id": 17,
+        "code": "10226",
+        "labelJp": "モード",
+        "labelEn": "Mode",
+        "value": "17"
+      },
+      {
+        "id": 18,
+        "code": "10227",
+        "labelJp": "メンズライク",
+        "labelEn": "Men's like",
+        "value": "18"
+      },
+      {
+        "id": 19,
+        "code": "10228",
+        "labelJp": "ミリタリー",
+        "labelEn": "Military",
+        "value": "19"
+      },
+      {
+        "id": 20,
+        "code": "10229",
+        "labelJp": "ミーハー",
+        "labelEn": "Meeha",
+        "value": "20"
+      },
+      {
+        "id": 21,
+        "code": "10230",
+        "labelJp": "ヘルシー",
+        "labelEn": "Healthy",
+        "value": "21"
+      },
+      {
+        "id": 22,
+        "code": "10231",
+        "labelJp": "フェミニン",
+        "labelEn": "Feminine",
+        "value": "22"
+      },
+      {
+        "id": 23,
+        "code": "10232",
+        "labelJp": "ハンサム",
+        "labelEn": "Handsome",
+        "value": "23"
+      },
+      {
+        "id": 24,
+        "code": "10233",
+        "labelJp": "ナチュラル",
+        "labelEn": "Natural",
+        "value": "24"
+      },
+      {
+        "id": 25,
+        "code": "10234",
+        "labelJp": "トラッド",
+        "labelEn": "Trad",
+        "value": "25"
+      },
+      {
+        "id": 26,
+        "code": "10235",
+        "labelJp": "セクシー",
+        "labelEn": "Sexy",
+        "value": "26"
+      },
+      {
+        "id": 27,
+        "code": "10236",
+        "labelJp": "スポーティ",
+        "labelEn": "Sporty",
+        "value": "27"
+      },
+      {
+        "id": 28,
+        "code": "10237",
+        "labelJp": "ストリート",
+        "labelEn": "Street",
+        "value": "28"
+      },
+      {
+        "id": 29,
+        "code": "10238",
+        "labelJp": "シンプル",
+        "labelEn": "Simple",
+        "value": "29"
+      },
+      {
+        "id": 30,
+        "code": "10239",
+        "labelJp": "サーフ",
+        "labelEn": "Surf",
+        "value": "30"
+      },
+      {
+        "id": 31,
+        "code": "10240",
+        "labelJp": "コンサバ",
+        "labelEn": "Conservative",
+        "value": "31"
+      },
+      {
+        "id": 32,
+        "code": "10241",
+        "labelJp": "きれいめ",
+        "labelEn": "Clean",
+        "value": "32"
+      },
+      {
+        "id": 33,
+        "code": "10242",
+        "labelJp": "キッズ",
+        "labelEn": "Kids",
+        "value": "33"
+      },
+      {
+        "id": 34,
+        "code": "10243",
+        "labelJp": "カジュアル",
+        "labelEn": "Casual",
+        "value": "34"
+      },
+      {
+        "id": 35,
+        "code": "10244",
+        "labelJp": "ガーリッシュ",
+        "labelEn": "Girlish",
+        "value": "35"
+      },
+      {
+        "id": 36,
+        "code": "10245",
+        "labelJp": "オーバーサイズ",
+        "labelEn": "Oversize",
+        "value": "36"
+      },
+      {
+        "id": 37,
+        "code": "10246",
+        "labelJp": "ヴィンテージ",
+        "labelEn": "Vintage",
+        "value": "37"
+      },
+      {
+        "id": 38,
+        "code": "10247",
+        "labelJp": "アウトドア",
+        "labelEn": "Outdoors",
+        "value": "38"
+      },
+      {
+        "id": 39,
+        "code": "10213",
+        "labelJp": "着痩せ",
+        "labelEn": "Skinny",
+        "value": "39"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "labelJp": "商品の状態",
+    "labelEn": "Product condition",
+    "inputType": "dropdown",
+    "type": "master_product_condition",
+    "options": [
+      {
+        "id": 1,
+        "code": "1000",
+        "labelJp": "新品、未使用",
+        "labelEn": "New, Unused",
+        "value": "1000"
+      },
+      {
+        "id": 3,
+        "code": "1002",
+        "labelJp": "未使用に近い",
+        "labelEn": "Close to new",
+        "value": "1002"
+      },
+      {
+        "id": 4,
+        "code": "1003",
+        "labelJp": "目立った傷や汚れなし",
+        "labelEn": "No noticeable scratches or dirt",
+        "value": "1003"
+      },
+      {
+        "id": 5,
+        "code": "1004",
+        "labelJp": "やや傷や汚れあり",
+        "labelEn": "There are some scratches and dirt",
+        "value": "1004"
+      },
+      {
+        "id": 6,
+        "code": "1005",
+        "labelJp": "傷や汚れあり",
+        "labelEn": "There are scratches and dirt",
+        "value": "1005"
+      },
+      {
+        "id": 7,
+        "code": "1006",
+        "labelJp": "全体的に状態が悪い",
+        "labelEn": "Overall bad condition",
+        "value": "1006"
+      }
+    ]
+  }
+]

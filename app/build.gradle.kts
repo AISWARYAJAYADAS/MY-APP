@@ -96,6 +96,14 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
 
+    // Moshi
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+
+    // Paging
+    implementation("androidx.paging:paging-compose:3.3.0")
+
+
+
 
 
     testImplementation(libs.junit)

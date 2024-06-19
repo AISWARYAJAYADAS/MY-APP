@@ -18,12 +18,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 import com.example.myapplication.utils.StatusCode
+import com.example.myapplication.utils.manager.ConfigurationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val repository: LoginRepository,
     private val sharedPref: SharedPref,
+    private val configurationManager: ConfigurationManager
 ) : ViewModel() {
 
     var username = mutableStateOf(TextFieldValue())
@@ -79,6 +81,7 @@ class LoginViewModel @Inject constructor(
                     refreshToken?.let {
                         sharedPref.saveRefreshToken(it)
                     }
+                    fetchMasterConfiguration()
                     if (response.value?.data?.isProfileVerified == true)
                         sharedPref.saveInitialProfileUpdatedStatus(status = true)
 
@@ -111,6 +114,13 @@ class LoginViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+
+    private fun fetchMasterConfiguration() {
+        if (sharedPref.isConfigUpdated().not()) {
+            configurationManager.callMasterConfiguration()
         }
     }
 

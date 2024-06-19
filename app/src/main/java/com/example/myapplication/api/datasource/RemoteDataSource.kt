@@ -8,8 +8,10 @@ import com.example.myapplication.home.AddDeviceResponse
 import com.example.myapplication.login.LoginApiResponse
 import com.example.myapplication.login.LoginRequest
 import com.example.myapplication.login.LogoutRequest
+import com.example.myapplication.post_listing.PostListingResponse
 import com.example.myapplication.pref.SharedPref
 import com.example.myapplication.profile.model.ProfileApiResponse
+import com.example.myapplication.ui.common.ConfigApiResponse
 import com.example.myapplication.utils.NetworkConstants
 import retrofit2.HttpException
 import retrofit2.Retrofit
@@ -69,13 +71,43 @@ class RemoteDataSource @Inject constructor(
     }
 
     //Fetches the user's profile details.
-    suspend fun getUserDetails():Output<ProfileApiResponse>{
-        return getResponse (request = {
+    suspend fun getUserDetails(): Output<ProfileApiResponse> {
+        return getResponse(request = {
             apiService.getUserDetails(
                 headers = sharedPrefs.headers
             )
         })
     }
+
+    // Fetches a list of posts based on provided params
+    suspend fun getPostListing(
+        limit: Int,
+        existingDataCount: Int,
+        postStatus: String?,
+        sortBy: String?,
+        reviewPending: Boolean?
+    ): Output<PostListingResponse> {
+        return getResponse(
+            request = {
+                apiService.getPostListing(
+                    existingDataCount = existingDataCount,
+                    limit = limit,
+                    headers = sharedPrefs.headers,
+                    postStatus = postStatus,
+                    sortBy = sortBy,
+                    reviewPending = reviewPending
+                )
+            }
+        )
+    }
+
+    // Fetches the master config
+    suspend fun fetchMasterConfig(): Output<ConfigApiResponse> {
+        return getResponse(request = {
+            apiService.fetchMasterConfig()
+        })
+    }
+
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.myapplication.splash
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,14 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.myapplication.BottomBarScreen
 import com.example.myapplication.R
-import com.example.myapplication.api.RefreshTokenApiService
 import com.example.myapplication.graphs.AuthScreen
 import com.example.myapplication.graphs.Graph
 import kotlinx.coroutines.delay
@@ -31,6 +26,7 @@ fun SplashScreen(
     splashViewModel: SplashViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
+        splashViewModel.fetchMasterConfiguration()
         splashViewModel.saveDeviceId()
 
         delay(2000) // Simulate a delay for the splash screen

@@ -1,0 +1,94 @@
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "SUCCESS",
+  "data": {
+    "id": 1,
+    "memberId": "ajithnair@qburst.com",
+    "emailPc": "ajithnair@qburst.com",
+    "nickname": "Aegon",
+    "firstName": "Aegon",
+    "firstNameKana": "ﾐｽﾃｨｳｰ",
+    "lastName": "Targeryan",
+    "lastNameKana": "営業部",
+    "dob": "11/02/1920",
+    "status": "PENDING",
+    "genderId": "10047",
+    "heightId": "10067",
+    "weightId": "20660",
+    "bodyShapeId": "10184",
+    "shoeSizeId": "20744",
+    "shoulderStatureId": "10193",
+    "personalColorId": "10197",
+    "labelName": "mysty woman",
+    "labelNameKana": "ミスティウーマン",
+    "labelCode": "0000000042",
+    "shopName": "ﾐｽﾃｨｳｰﾏﾝ営業部",
+    "shopNameKana": "ミセッテイ",
+    "shopCode": "5810",
+    "barcode": "168326973766",
+    "isActive": true,
+    "isDeleted": false,
+    "role": "SELLER",
+    "permission": {
+      "id": 1,
+      "viewProfile": false,
+      "manageProfile": false
+    },
+    "address": {
+      "id": 1,
+      "doorNumber": "100",
+      "buildingName": "Tower 1",
+      "province": "Westeros 1",
+      "city": "City 1",
+      "postalCode": "1001001",
+      "telephone": "912345678"
+    },
+    "image": {
+      "id": 1,
+      "sourceUrl": "https://s3.ap-northeast-1.amazonaws.com/adastria-images-dev/staffboard/profile/9970/720589af-7e4b-4bd4-9f73-6114172a3ff0_image.jpeg",
+      "largeUrl": "https://s3.ap-northeast-1.amazonaws.com/adastria-images-dev/staffboard/profile/9970/720589af-7e4b-4bd4-9f73-6114172a3ff0_l.age.jpeg",
+      "mediumUrl": "https://s3.ap-northeast-1.amazonaws.com/adastria-images-dev/staffboard/profile/9970/720589af-7e4b-4bd4-9f73-6114172a3ff0_m.age.jpeg",
+      "smallUrl": "https://s3.ap-northeast-1.amazonaws.com/adastria-images-dev/staffboard/profile/9970/720589af-7e4b-4bd4-9f73-6114172a3ff0_s.age.jpeg",
+      "thumbnailUrl": "https://s3.ap-northeast-1.amazonaws.com/adastria-images-dev/staffboard/profile/9970/720589af-7e4b-4bd4-9f73-6114172a3ff0_t.age.jpeg"
+    },
+    "interests": [
+      {
+        "id": 46,
+        "code": "1017",
+        "tags": [
+          {
+            "tagId": 10482,
+            "tagName": "SPIDER MAN Part 2"
+          },
+          {
+            "tagId": 10487,
+            "tagName": "SUPER MAN "
+          },
+          {
+            "tagId": 10488,
+            "tagName": "BAT MAN"
+          }
+        ],
+        "labelEn": "Books / manga",
+        "labelJp": "本・漫画"
+      },
+      {
+        "id": 47,
+        "code": "1016",
+        "tags": [
+        ],
+        "labelEn": "game",
+        "labelJp": "ゲーム"
+      },
+      {
+        "id": 48,
+        "code": "1018",
+        "tags": [
+        ],
+        "labelEn": "matter",
+        "labelJp": "こと"
+      }
+    ]
+  }
+}

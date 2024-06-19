@@ -13,6 +13,7 @@ import com.example.myapplication.ScreenContent
 import com.example.myapplication.create_listing.CreateListingScreen
 import com.example.myapplication.gallery.GalleryPickerScreen
 import com.example.myapplication.home.HomeScreen
+import com.example.myapplication.post_listing.PostListingScreen
 import com.example.myapplication.profile.ProfileScreen
 import com.example.myapplication.settings.SettingsScreen
 
@@ -105,6 +106,9 @@ fun NavGraphBuilder.createListingNavGraph(navController: NavHostController) {
             CreateListingScreen(
             )
         }
+        composable(route = CreateListingRoutes.PostListingScreen.route){
+            PostListingScreen()
+        }
 
 
 //        composable(route = CreateListingRoutes.ListNewItemScreen.route) {
@@ -134,9 +138,11 @@ fun NavGraphBuilder.createListingNavGraph(navController: NavHostController) {
 
 
 sealed class CreateListingRoutes(val route: String) {
-    object ListNewItemScreen : CreateListingRoutes("LIST_NEW_ITEM")
-    object ListFromDraftScreen : CreateListingRoutes("LIST_FROM_DRAFT")
     object GalleryPickerScreen : CreateListingRoutes("GALLERY_PICKER")
+    object ListNewItemScreen : CreateListingRoutes("LIST_NEW_ITEM")
+    object PostListingScreen : CreateListingRoutes("POST_LISTING")
+    object ListFromDraftScreen : CreateListingRoutes("LIST_FROM_DRAFT")
+
     object ListingImageFullScreenPreview : CreateListingRoutes("IMAGE_FULL_SCREEN_PREVIEW")
     object ImageCroppingScreen : CreateListingRoutes("IMAGE_CROPPING")
     object CameraCaptureScreen : CreateListingRoutes("CAMERA_CAPTURE")

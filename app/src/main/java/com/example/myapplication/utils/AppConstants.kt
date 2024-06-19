@@ -21,3 +21,22 @@ object PrefConstants {
     const val URL_CONFIG = "url_configuration"
     const val IS_FCM_TOKEN_ADDED = "fcm_token_added"
 }
+
+object ListingStatus {
+    const val DRAFT = "DRAFT"
+    const val PUBLISHED = "PUBLISHED"
+    const val ORDER_PLACED = "ORDER_PLACED"
+    const val ORDER_COMPLETED = "ORDER_COMPLETED"
+    const val ORDER_CANCELED = "ORDER_CANCELED"
+}
+
+object ListingSortType {
+    const val NEWEST = "NEWEST"
+    const val MOST_LIKED = "MOST_LIKED"
+    const val OLDEST = "OLDEST"
+    const val PV_COUNT = "VIEW_COUNT"
+}
+
+object AppConstants{
+    const val API_LISTING_LIMIT = 20
+}

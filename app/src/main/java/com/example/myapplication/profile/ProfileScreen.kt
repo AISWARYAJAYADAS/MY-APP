@@ -1,11 +1,14 @@
 package com.example.myapplication.profile
 
+import CustomDropdown
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -30,8 +34,10 @@ import androidx.navigation.NavController
 import com.example.myapplication.R
 import com.example.myapplication.components.CustomTabLayout
 import com.example.myapplication.components.TabData
+import com.example.myapplication.post_listing.PostListingScreen
 import com.example.myapplication.post_listing.PostListingViewModel
 import com.example.myapplication.profile.components.ProfileCard
+import com.example.myapplication.ui.common.DropDownModel
 
 @Composable
 fun ProfileScreen(
@@ -81,65 +87,12 @@ fun ProfileScreen(
         Spacer(modifier = Modifier.height(24.dp))
         // ProfileTabLayout(postListingViewModel = viewModel, onTabSelected = {})
 
-        val sampleTabs = listOf(
-            TabData("出品中", 10),
-            TabData("取引中", null),
-            TabData("取引完了", 5)
-        )
+//        SortDropdown(viewModel)
+//        PostListScreen(viewModel)
 
-        var selectedTabIndex by remember { mutableIntStateOf(0) }
-
-        CustomTabLayout(
-            tabData = sampleTabs,
-            selectedTabIndex = selectedTabIndex,
-            onTabSelected = { index ->
-                selectedTabIndex = index
-            }
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Conditionally display content based on selectedTabIndex
-        when (selectedTabIndex) {
-            0 ->
-                LazyColumn {
-                    items(5) { index ->
-                        Text(
-                            text = "First Tab data $index",
-                            color = Color.Green,
-                            modifier = Modifier.padding(16.dp)
-                        )
-                    }
-                }
-
-            1 ->
-
-                LazyColumn {
-                    items(5) { index ->
-                        Text(
-                            text = "Second tab data $index",
-                            color = Color.Red,
-                            modifier = Modifier.padding(16.dp)
-                        )
-                    }
-                }
-
-
-            2 ->
-
-                LazyColumn {
-                    items(5) { index ->
-                        Text(
-                            text = "Third tab data $index",
-                            color = Color.Black,
-                            modifier = Modifier.padding(16.dp)
-                        )
-                    }
-                }
-
-
-        }
+        PostListingScreen()
     }
+
 
 }
 
